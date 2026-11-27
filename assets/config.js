@@ -8,9 +8,9 @@ const CATS=["콘텐츠 (월)","운영 (월)","처음 한 번만"];
 const ITEMS=[
  {k:"blog",cat:0,name:"네이버 블로그 글",unit:36000,per:"편",max:30,step:4,desc:"검색어 조사부터 발행까지 한 편씩 새로 씁니다.",inc:["검색어 조사·주제 기획","원고 작성 (환자 질문 1개에 답하는 글)","이미지·썸네일 배치","의료광고 점검표 대조 → 원장님 확인 후 발행","발행 URL 보고"]},
  {k:"insta",cat:0,name:"인스타그램 게시물",unit:31000,per:"건",max:30,step:4,desc:"카드뉴스·사진 게시물을 만들고 병원 계정에 등록합니다.",inc:["카드뉴스·사진 제작","캡션·해시태그","등록(예약 게시)","의료광고 점검"]},
- {k:"threads",cat:0,name:"스레드 글",unit:45000,per:"건",max:40,step:4,desc:"짧은 정보 글을 작성하고 등록합니다.",inc:["글 작성","등록","의료광고 점검"]},
- {k:"video",cat:0,name:"숏폼 영상 제작",unit:105000,per:"편",max:12,step:1,desc:"30~60초 영상 편집·자막·썸네일 (촬영 소스는 병원 제공 또는 별도 협의).",inc:["컷 편집·자막","썸네일","의료광고 점검","원장님 확인"]},
- {k:"videoreg",cat:0,name:"영상 등록 SNS 수",unit:5000,per:"곳",max:4,step:1,mult:"video",desc:"인스타 릴스·유튜브 쇼츠·틱톡·스레드 중 몇 곳에 올릴지 (영상 1편당, 곳마다).",inc:["채널별 규격 맞춤","제목·설명·태그","예약 등록"]},
+ {k:"threads",cat:0,name:"스레드 글",unit:39000,per:"건",max:40,step:4,desc:"짧은 정보 글을 작성하고 등록합니다.",inc:["글 작성","등록","의료광고 점검"]},
+ {k:"video",cat:0,name:"숏폼 영상 제작",unit:150000,per:"편",max:12,step:1,desc:"30~60초 영상 편집·자막·썸네일 (촬영 소스는 병원 제공 또는 별도 협의).",inc:["컷 편집·자막","썸네일","의료광고 점검","원장님 확인"]},
+ {k:"videoreg",cat:0,name:"영상 등록 SNS 수",unit:10000,per:"곳",max:4,step:1,mult:"video",desc:"인스타 릴스·유튜브 쇼츠·틱톡·스레드 중 몇 곳에 올릴지 (영상 1편당, 곳마다).",inc:["채널별 규격 맞춤","제목·설명·태그","예약 등록"]},
  {k:"plan",cat:1,name:"기획·관리",unit:200000,per:"월",toggle:true,desc:"한 달 콘텐츠를 미리 계획하고, 일정과 보고를 관리합니다.",inc:["월간 콘텐츠 캘린더","검색어·주제 선정","원장님 확인 일정 관리","월 보고서 (발행 URL·검색어 순위·다음 달 주제)"]},
  {k:"daangn",cat:1,name:"당근 비즈프로필 관리",unit:150000,per:"월",toggle:true,desc:"동네 환자에게 보이는 당근 프로필을 꾸준히 관리합니다.",inc:["소식 글 등록","쿠폰·단골 혜택 점검 (의료법 범위 안)","채팅 응대 문구 관리"]},
  {k:"ads",cat:1,name:"SNS 광고 등록·운영",unit:300000,per:"월",toggle:true,desc:"소재·문구 제작, 등록, 성과 점검. 광고비는 병원이 직접 결제합니다.",inc:["광고 소재·문구 제작","등록·운영","주간 성과 점검","의료광고 심의 대응 지원"]},
@@ -25,9 +25,9 @@ const ITEMS=[
  {k:"placefix",cat:2,name:"네이버 플레이스 수정·보수",unit:200000,per:"1회",toggle:true,once:true,desc:"플레이스 정보·소개글·사진·소식을 점검하고 고칩니다. 프리미엄은 무료로 포함됩니다.",inc:["기본 정보·소개글 수정","대표 사진·소식 정비","오류·노출 점검"]},
 ];
 const TIERS=[
- {id:"light",name:"라이트",price:780000,tag:"블로그를 꾸준히 시작하고 싶은 병원",sel:{blog:8,insta:4,threads:8,plan:1},once:{}},
- {id:"std",name:"스탠다드",price:1450000,tag:"블로그·SNS·영상을 함께 쓰는 병원",sel:{blog:12,insta:8,threads:12,video:2,videoreg:3,plan:1,daangn:1},once:{daangnset:1}},
- {id:"pre",name:"프리미엄",price:2250000,tag:"홈페이지부터 광고까지 한 번에",sel:{blog:16,insta:12,threads:16,video:4,videoreg:4,plan:1,daangn:1,ads:1},once:{daangnset:1,adsset:1,placefix:1},onceFree:["placefix"]},
+ {id:"light",name:"라이트",price:740000,tag:"블로그를 꾸준히 시작하고 싶은 병원",sel:{blog:8,insta:4,threads:8,plan:1},once:{}},
+ {id:"std",name:"스탠다드",price:1490000,tag:"블로그·SNS·영상을 함께 쓰는 병원",sel:{blog:12,insta:8,threads:12,video:2,videoreg:3,plan:1,daangn:1},once:{daangnset:1}},
+ {id:"pre",name:"프리미엄",price:2390000,tag:"홈페이지부터 광고까지 한 번에",sel:{blog:16,insta:12,threads:16,video:4,videoreg:4,plan:1,daangn:1,ads:1},once:{daangnset:1,adsset:1,placefix:1},onceFree:["placefix"]},
 ];
 
 /* 왜 해야 하는가: 시대 상황 후킹 문구. 숫자는 출처가 있는 것만 쓰고, 출처 없는 항목은 의견임을 표시한다. {thr}은 지역 스레드 연결률로 바뀐다. */
