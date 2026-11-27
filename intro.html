@@ -373,9 +373,9 @@ footer b{color:#c5caf0;font-size:14px}
   <label>연락처</label><input id="f_t" inputmode="tel" placeholder="010-0000-0000">
   <label>이메일 (선택)</label><input id="f_m" inputmode="email" placeholder="example@hospital.com">
   <div class="agree"><input type="checkbox" id="f_a"><span>진단 결과 안내를 위해 위 정보를 보내는 것에 동의합니다. (입력하신 정보는 보내기 전까지 이 기기 밖으로 나가지 않습니다)</span></div>
-  <div class="btns"><button class="btn g" id="f_send" type="button">이메일로 신청하기</button><button class="btn o" id="f_copy" type="button">내용 복사 후 카카오톡 열기</button></div>
+  <div class="btns"><button class="btn g" id="f_send" type="button">신청 접수하기</button><button class="btn o" id="f_copy" type="button">내용 복사 후 카카오톡 열기</button></div>
   <div class="msg" id="f_msg"></div>
-  <div class="resbox" id="f_res" style="display:none"><b>신청 내용이 준비됐어요</b><textarea id="f_ta" readonly rows="6"></textarea><div class="rb"><button type="button" id="r_gm">Gmail에서 보내기</button><button type="button" id="r_cp">내용 복사</button><button type="button" id="r_ml">메일 앱으로 열기</button><a href="https://pf.kakao.com/_xdRdvX/chat" target="_blank" rel="noopener" class="rk">카카오톡 채팅방</a></div><small>메일은 info@clickmedi.clickdew.com 으로 갑니다. 아무것도 안 열리면 위 내용을 길게 눌러 복사한 뒤 카카오톡이나 메일로 보내 주세요.</small></div>
+  <div class="resbox" id="f_res" style="display:none"><b id="f_rt">신청 내용이 준비됐어요</b><textarea id="f_ta" readonly rows="6"></textarea><div class="rb"><button type="button" id="r_gm">Gmail에서 보내기</button><button type="button" id="r_cp">내용 복사</button><button type="button" id="r_ml">메일 앱으로 열기</button><a href="https://pf.kakao.com/_xdRdvX/chat" target="_blank" rel="noopener" class="rk">카카오톡 채팅방</a></div><small>메일은 info@clickmedi.clickdew.com 으로 갑니다. 아무것도 안 열리면 위 내용을 길게 눌러 복사한 뒤 카카오톡이나 메일로 보내 주세요.</small></div>
  </div>
  <p class="sub" style="margin-top:34px;font-weight:800">홈페이지도 둘러보세요</p>
  <div class="hgrid">
@@ -427,7 +427,14 @@ footer b{color:#c5caf0;font-size:14px}
  function subj(){return "[무료 진단 신청] "+$("f_h").value.trim()}
  function gmailUrl(){return "https://mail.google.com/mail/?view=cm&fs=1&to="+MAIL+"&su="+encodeURIComponent(subj())+"&body="+encodeURIComponent(body())}
  function showRes(){const t=body();$("f_ta").value=t;$("f_res").style.display="block";$("f_res").scrollIntoView({block:"center",behavior:"smooth"})}
- $("f_send").onclick=()=>{if(!ok())return;const c=copySync(body());showRes();const w=window.open(gmailUrl(),"_blank");toast(w?"Gmail 작성 창을 열었어요. 내용이 이미 채워져 있으니 '보내기'만 누르세요.":(c?"내용을 복사했어요. 아래 버튼으로 Gmail을 열어 주세요.":"아래 상자의 내용을 복사해 보내 주세요."))};
+ let sending=false;
+ $("f_send").onclick=()=>{if(sending||!ok())return;sending=true;const b=$("f_send");b.textContent="접수 중...";b.disabled=true;
+  const v=id=>$(id).value.trim();
+  const payload={"병원명":v("f_h"),"진료과":v("f_d"),"병원 위치":v("f_l"),"연락처":v("f_t"),"이메일":v("f_m")||"(없음)","접수 페이지":location.href,"_subject":"[클릭메디 무료 진단 신청] "+v("f_h"),"_template":"table","_captcha":"false","_honey":""};
+  const ctl=new AbortController();const to=setTimeout(()=>ctl.abort(),15000);
+  fetch("https://formsubmit.co/ajax/"+MAIL,{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify(payload),signal:ctl.signal})
+  .then(r=>r.json()).then(d=>{clearTimeout(to);if(d&&(d.success===true||d.success==="true")){b.textContent="접수 완료 ✓";$("f_rt").textContent="접수가 완료됐습니다. 확인 후 연락드리겠습니다.";$("f_ta").value=body();$("f_res").style.display="block";$("f_res").querySelector(".rb").style.display="none";$("f_res").querySelector("small").style.display="none";toast("접수가 완료됐습니다. 확인 후 연락드리겠습니다.");setTimeout(()=>{b.textContent="신청 접수하기";b.disabled=false;sending=false},4000)}else throw new Error("fail")})
+  .catch(()=>{clearTimeout(to);b.textContent="신청 접수하기";b.disabled=false;sending=false;copySync(body());showRes();$("f_rt").textContent="접수가 잘 안 됐어요. 아래 방법으로 보내 주세요";$("f_res").querySelector(".rb").style.display="flex";$("f_res").querySelector("small").style.display="block";toast("접수가 잘 안 됐어요. 아래 버튼으로 Gmail이나 카카오톡으로 보내 주세요.")})};
  $("f_copy").onclick=()=>{if(!ok())return;const c=copySync(body());showRes();window.open(KAKAO,"_blank");toast(c?"내용을 복사했어요. 카카오톡 채팅창에 붙여넣어 보내 주세요.":"아래 상자의 내용을 직접 복사해 주세요.")};
  $("r_gm").onclick=()=>{window.open(gmailUrl(),"_blank")};
  $("r_cp").onclick=()=>{const c=copySync($("f_ta").value);if(!c){$("f_ta").focus();$("f_ta").select()}toast(c?"복사했어요":"상자를 길게 눌러 복사해 주세요")};
