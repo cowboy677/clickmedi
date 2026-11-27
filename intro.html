@@ -98,14 +98,18 @@ h2.t.l{text-align:left}
 #hwrap.fs .vb{width:100vw;height:100vh;height:100dvh;border-radius:0;aspect-ratio:auto}
 #hwrap.fs video{width:100vw;height:100vh;height:100dvh}
 #hwrap.fs .vlabel,#hwrap.fs .hint{display:none}
-#hwrap .cover{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:#000;cursor:pointer;display:block;z-index:2}
-#hwrap .cover img{width:100%;height:100%;object-fit:cover;display:block}
-#hwrap .cover::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,.08),rgba(0,0,0,.28))}
-#hwrap .pbtn{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(108,99,255,.92);display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 0 8px rgba(255,255,255,.22);transition:transform .2s}
-#hwrap .pbtn svg{margin-left:5px}
-#hwrap .cover:hover .pbtn{transform:scale(1.08)}
-#hwrap .dur{position:absolute;right:12px;bottom:10px;z-index:3;background:rgba(0,0,0,.7);color:#fff;font-size:12px;font-weight:700;padding:3px 9px;border-radius:6px}
-#hwrap.playing .cover{display:none}
+#hwrap .tap{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:pointer;display:block;z-index:2;-webkit-tap-highlight-color:transparent}
+#hwrap .pbtn{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(108,99,255,.92);display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 0 8px rgba(255,255,255,.22);transition:opacity .25s,transform .25s;opacity:0;transform:scale(.8);pointer-events:none}
+#hwrap .pbtn svg{margin-left:0}
+#hwrap.paused .pbtn,#hwrap.flash .pbtn{opacity:1;transform:none}
+#hwrap.paused .tap::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
+#hwrap .snd{position:absolute;left:10px;top:10px;z-index:4;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:8px 14px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;display:none}
+#hwrap.muted .snd{display:block;animation:pulse 1.8s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
+#hwrap .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.2);z-index:4;pointer-events:none}
+#hwrap .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--gold))}
+#video{padding:18px 14px 34px}
+#video .vt{font-size:24px;margin:22px 0 0;text-align:center;line-height:1.35}
 #hwrap .fsx{display:none}
 #hwrap.fs .fsx{display:block;position:absolute;right:calc(14px + env(safe-area-inset-right));top:calc(10px + env(safe-area-inset-top));z-index:3;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:20px;padding:6px 14px;font-size:14px;font-family:inherit}
 body.noscroll{overflow:hidden}
@@ -190,6 +194,13 @@ footer b{color:#c5caf0;font-size:14px}
 
 <div class="col">
 
+<!-- 0 VIDEO (top) -->
+<section class="dark" id="video">
+ <div class="reveal in" id="hwrap"><div class="vb"><button class="fsx" type="button" id="fsx">✕ 닫기</button><video id="hv" playsinline autoplay muted preload="auto" poster="assets/video/poster_horizontal.jpg"><source src="assets/video/clickmedi_horizontal.mp4" type="video/mp4"></video><button type="button" class="tap" id="tap" aria-label="재생 / 일시정지"><span class="pbtn"><svg id="pic" viewBox="0 0 24 24" width="38" height="38"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span></button><button type="button" class="snd" id="snd">🔊 소리 켜기</button><div class="bar"><i id="barfill"></i></div></div><div class="hint"><span class="rot">📱</span><span>폰을 가로로 돌리면 화면이 꽉 차게 재생됩니다 · 화면을 누르면 멈춤/재생</span><button type="button" class="fsbtn" id="fsb">전체화면</button></div></div>
+ <h2 class="t vt">1분 21초면 <span class="hl">클릭메디가 하는 일</span>이<br>한눈에 보입니다</h2>
+ <p class="note" style="margin-top:12px">※ 영상 속 인물과 장소는 AI로 만든 가상 이미지이며, 진단기 화면은 병원명을 가린 예시입니다.</p>
+</section>
+
 <!-- 1 HERO -->
 <section class="dark hero"><div class="heroimg"></div>
  <p class="small reveal">원장님, 요즘 이런 생각 한 번쯤 하셨죠</p>
@@ -243,16 +254,6 @@ footer b{color:#c5caf0;font-size:14px}
   <p class="note">네이버 지도에 등록된 주소와 홈페이지 안 링크 기준 자체 수집값입니다. 링크 없이 운영하는 계정은 '없음'으로 보일 수 있고, 외부 기관의 공식 통계가 아닙니다.</p>
  </div>
  <div class="callout reveal">스레드는 연결한 병원이 거의 없어요.<br><b>먼저 시작한 계정이 먼저 기억됩니다.</b></div>
-</section>
-
-<!-- 5 VIDEO -->
-<section class="dark" id="video">
- <p class="eyebrow">영상으로 먼저 보세요</p>
- <h2 class="t reveal">1분 21초면<br><span class="hl">클릭메디가 하는 일</span>이<br>한눈에 보입니다</h2>
- <div class="vgrid">
-  <div class="reveal" id="hwrap"><div class="vb"><button class="fsx" type="button" id="fsx">✕ 닫기</button><video id="hv" playsinline preload="none" poster="assets/video/poster_horizontal.jpg"><source src="assets/video/clickmedi_horizontal.mp4" type="video/mp4"></video><button type="button" class="cover" id="cover" aria-label="영상 재생"><img src="assets/video/poster_horizontal.jpg" alt="클릭메디 소개 영상 썸네일"><span class="pbtn"><svg viewBox="0 0 24 24" width="38" height="38"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span><span class="dur">1분 21초</span></button></div><div class="hint"><span class="rot">📱</span><span>폰을 가로로 돌리면 화면이 꽉 차게 재생됩니다</span><button type="button" class="fsbtn" id="fsb">전체화면</button></div></div>
- </div>
-  <p class="note" style="margin-top:24px">※ 영상 속 인물과 장소는 AI로 만든 가상 이미지이며, 진단기 화면은 병원명을 가린 예시입니다.</p>
 </section>
 
 <!-- 6 WHAT WE DO -->
@@ -358,12 +359,11 @@ footer b{color:#c5caf0;font-size:14px}
 <!-- 13 FINAL CTA -->
 <section class="dark2" id="apply">
  <div class="photo reveal" style="margin:0 0 34px"><img src="assets/img/s13.jpg" alt="병원 의료진과 마케팅 담당자" loading="lazy"><div class="cap">우리 병원이 검색에서 어떻게 보이는지<br>먼저 확인해 보세요</div></div>
- <h2 class="t reveal">답장에 <span class="hl">“진단”</span>이라고<br>써 주시면 됩니다</h2>
- <p class="sub reveal">받으신 메일에 “진단”이라고만 답장해 주세요.<br>진단 결과를 <b class="hl2">무료</b>로 보내 드립니다.</p>
+ <h2 class="t reveal">아래에 <span class="hl">무료진단</span> 신청하시면<br>정밀진단해 드리겠습니다</h2>
+ <p class="sub reveal">병원명과 연락처만 남겨 주세요.<br>진단 결과를 <b class="hl2">무료</b>로 보내 드립니다.</p>
  <div class="btns reveal">
   <a class="btn p" href="diagnose.html">직접 무료 진단 해보기 →</a>
   <a class="btn g" href="price.html">가격 확인하기 →</a>
-  <a class="btn o" href="tel:01042947742">전화로 문의 · 010-4294-7742</a>
  </div>
  <div class="form reveal" id="f">
   <b style="font-size:18px">무료 진단 신청</b>
@@ -403,10 +403,18 @@ footer b{color:#c5caf0;font-size:14px}
  // sticky bar after hero
  const fab=$("fab");function fabUp(){fab.classList.toggle("show",scrollY>innerHeight*.7)};addEventListener("scroll",fabUp,{passive:true});fabUp();
  // video: one at a time, landscape fullscreen
- const hv=$("hv"),hw=$("hwrap");let inView=false,dismissed=false;
- function startPlay(){hv.controls=true;hw.classList.add("playing");hv.play().catch(()=>{})}
- $("cover").onclick=startPlay;
- hv.addEventListener("play",()=>{inView=true;hv.controls=true;hw.classList.add("playing")});
+ const hv=$("hv"),hw=$("hwrap");let inView=true,dismissed=false;
+ function sync(){hw.classList.toggle("paused",hv.paused);hw.classList.toggle("muted",hv.muted)}
+ function toggle(){if(hv.paused){hv.play().catch(()=>{})}else{hv.pause()}hw.classList.add("flash");setTimeout(()=>hw.classList.remove("flash"),500)}
+ $("tap").onclick=toggle;
+ $("snd").onclick=e=>{e.stopPropagation();hv.muted=false;hv.volume=1;if(hv.paused)hv.play().catch(()=>{});sync()};
+ ["play","pause","volumechange","loadeddata"].forEach(ev=>hv.addEventListener(ev,sync));
+ hv.addEventListener("timeupdate",()=>{if(hv.duration)$("barfill").style.width=(hv.currentTime/hv.duration*100)+"%"});
+ hv.addEventListener("ended",()=>sync());
+ (function autoplay(){hv.muted=false;const p=hv.play();const fb=()=>{hv.muted=true;hv.play().catch(()=>{});sync()};if(p&&p.catch)p.catch(fb);else fb();setTimeout(()=>{if(hv.paused){hv.muted=true;hv.play().catch(()=>{})}sync()},900)})();
+ // first touch anywhere on page (outside controls) turns sound on if it started muted
+ let unm=false;addEventListener("pointerdown",e=>{if(unm||!hv.muted)return;if(e.target.closest&&e.target.closest("#hwrap .tap"))return;unm=true},{passive:true});
+ sync();
  const phoneLand=()=>matchMedia("(orientation: landscape)").matches&&Math.min(innerWidth,innerHeight)<=520;
  new IntersectionObserver(es=>es.forEach(e=>{if(!phoneLand())inView=e.intersectionRatio>=.4}),{threshold:[0,.2,.4,.6,.8,1]}).observe(hw);
  function enter(){if(hw.classList.contains("fs"))return;hw.classList.add("fs");document.body.classList.add("noscroll");try{const r=hw.requestFullscreen||hw.webkitRequestFullscreen;if(r&&!document.fullscreenElement)Promise.resolve(r.call(hw)).catch(()=>{})}catch(e){}}
@@ -416,7 +424,7 @@ footer b{color:#c5caf0;font-size:14px}
  if(screen.orientation&&screen.orientation.addEventListener)screen.orientation.addEventListener("change",()=>setTimeout(update,200));
  $("fsx").onclick=()=>{dismissed=true;exit()};
  document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement&&hw.classList.contains("fs")&&!phoneLand())exit()});
- $("fsb").onclick=()=>{dismissed=false;enter();try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock("landscape").catch(()=>{})}catch(e){};if(hv.paused)startPlay()};
+ $("fsb").onclick=()=>{dismissed=false;enter();try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock("landscape").catch(()=>{})}catch(e){};if(hv.paused)hv.play().catch(()=>{})};
  // form
  function toast(t){const e=$("toast");e.textContent=t;e.classList.add("show");clearTimeout(e._t);e._t=setTimeout(()=>e.classList.remove("show"),3200);$("f_msg").textContent=t}
  function body(){const v=id=>$(id).value.trim();return `[무료 진단 신청]\n병원명: ${v("f_h")}\n진료과: ${v("f_d")}\n위치: ${v("f_l")}\n연락처: ${v("f_t")}\n이메일: ${v("f_m")}`}
