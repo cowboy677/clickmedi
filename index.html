@@ -11,8 +11,9 @@
 .hv.paused .tap::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
 .hv .snd{position:absolute;left:10px;top:10px;z-index:4;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:8px 14px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;display:none}
 .hv.muted .snd{display:block}
-.hv .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.2);z-index:4;pointer-events:none}
-.hv .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6c63ff,#e7d3a0)}
+.hv .bar{position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(rgba(255,255,255,.28),rgba(255,255,255,.28)) left bottom/100% 6px no-repeat;z-index:6;cursor:pointer;touch-action:none}
+.hv .bar i{position:absolute;left:0;bottom:0;display:block;height:6px;width:0;background:linear-gradient(90deg,#6c63ff,#e7d3a0);pointer-events:none}
+.hv .bar i::after{content:"";position:absolute;right:-8px;bottom:-5px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(108,99,255,.55)}
 @media(max-width:600px){.hv{border-radius:12px;margin-bottom:22px}.hv .pb{width:64px;height:64px;margin:-32px 0 0 -32px}}
 </style>
 <meta property="og:image" content="https://clickmedi.clickdew.com/assets/img/og.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="twitter:image" content="https://clickmedi.clickdew.com/assets/img/og.png"><link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="assets/img/favicon-48.png"><link rel="apple-touch-icon" href="assets/img/apple-touch-icon.png"><meta name="theme-color" content="#0a0f33"></head><body>
@@ -119,6 +120,8 @@ function sync(){b.classList.toggle("paused",v.paused);b.classList.toggle("muted"
 document.getElementById("htap").onclick=function(){if(v.paused)v.play().catch(function(){});else v.pause();b.classList.add("flash");setTimeout(function(){b.classList.remove("flash")},500)};
 document.getElementById("hsnd").onclick=function(e){e.stopPropagation();v.muted=false;v.volume=1;if(v.paused)v.play().catch(function(){});sync()};
 ["play","pause","volumechange","loadeddata"].forEach(function(ev){v.addEventListener(ev,sync)});
+(function(){var bar=document.querySelector(".hv .bar"),drag=false;function seek(e){var r=bar.getBoundingClientRect(),x=Math.min(Math.max((e.clientX-r.left)/r.width,0),1);if(v.duration){v.currentTime=x*v.duration;document.getElementById("hbar").style.width=(x*100)+"%"}}
+bar.addEventListener("pointerdown",function(e){e.stopPropagation();drag=true;try{bar.setPointerCapture(e.pointerId)}catch(_){}seek(e)});bar.addEventListener("pointermove",function(e){if(drag)seek(e)});bar.addEventListener("pointerup",function(){drag=false});bar.addEventListener("pointercancel",function(){drag=false});bar.addEventListener("click",function(e){e.stopPropagation()})})();
 v.addEventListener("timeupdate",function(){if(v.duration)document.getElementById("hbar").style.width=(v.currentTime/v.duration*100)+"%"});
 v.muted=false;var p=v.play();function fb(){v.muted=true;v.play().catch(function(){});sync()}
 if(p&&p.catch)p.catch(fb);else fb();

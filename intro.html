@@ -106,8 +106,9 @@ h2.t.l{text-align:left}
 #hwrap .snd{position:absolute;left:50%;top:12px;bottom:auto;margin-left:-86px;width:172px;text-align:center;z-index:4;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:11px 12px;font-size:16px;font-weight:900;font-family:inherit;cursor:pointer;display:none}
 #hwrap.muted .snd{display:block;animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
-#hwrap .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.2);z-index:4;pointer-events:none}
-#hwrap .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--ac),var(--gold))}
+#hwrap .bar{position:absolute;left:0;right:0;bottom:0;height:28px;background:linear-gradient(rgba(255,255,255,.28),rgba(255,255,255,.28)) left bottom/100% 6px no-repeat;z-index:6;cursor:pointer;touch-action:none;pointer-events:auto;margin:0}
+#hwrap .bar i{position:absolute;left:0;bottom:0;display:block;height:6px;width:0;background:linear-gradient(90deg,var(--ac),var(--gold));pointer-events:none}
+#hwrap .bar i::after{content:"";position:absolute;right:-8px;bottom:-5px;width:16px;height:16px;border-radius:50%;background:#fff;box-shadow:0 0 0 3px rgba(108,99,255,.55)}
 #video{padding:18px 14px 34px}
 #video .vt{font-size:24px;margin:22px 0 0;text-align:center;line-height:1.35}
 #hwrap .fsx{display:none}
@@ -197,7 +198,7 @@ footer b{color:#c5caf0;font-size:14px}
 <!-- 0 VIDEO (top) -->
 <section class="dark" id="video">
  <div class="reveal in" id="hwrap"><div class="vb"><button class="fsx" type="button" id="fsx">✕ 닫기</button><video id="hv" playsinline autoplay muted preload="auto" poster="assets/video/poster_horizontal.jpg"><source src="assets/video/clickmedi_horizontal.mp4" type="video/mp4"></video><button type="button" class="tap" id="tap" aria-label="재생 / 일시정지"><span class="pbtn"><svg id="pic" viewBox="0 0 24 24" width="38" height="38"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span></button><button type="button" class="snd" id="snd">🔊 탭하면 소리 켜짐</button><div class="bar"><i id="barfill"></i></div></div><div class="hint"><span class="rot">📱</span><span>폰을 가로로 돌리면 화면이 꽉 차게 재생됩니다 · 화면을 누르면 멈춤/재생</span><button type="button" class="fsbtn" id="fsb">전체화면</button></div></div>
- <h2 class="t vt">1분 19초면 <span class="hl">클릭메디가 하는 일</span>이<br>한눈에 보입니다</h2>
+ <h2 class="t vt">1분 20초면 <span class="hl">클릭메디가 하는 일</span>이<br>한눈에 보입니다</h2>
  <p class="note" style="margin-top:12px">※ 영상 속 인물과 장소는 AI로 만든 가상 이미지이며, 진단기 화면은 병원명을 가린 예시입니다.</p>
 </section>
 
@@ -407,6 +408,13 @@ footer b{color:#c5caf0;font-size:14px}
  function sync(){hw.classList.toggle("paused",hv.paused);hw.classList.toggle("muted",hv.muted)}
  function toggle(){if(hv.muted){hv.muted=false;hv.volume=1;if(hv.paused)hv.play().catch(()=>{});sync();return}if(hv.paused){hv.play().catch(()=>{})}else{hv.pause()}hw.classList.add("flash");setTimeout(()=>hw.classList.remove("flash"),500)}
  $("tap").onclick=toggle;
+ // 진행막대: 누르거나 끌어서 원하는 곳으로 이동(되돌려 보기)
+ (function(){const bar=hw.querySelector(".bar");let drag=false;const seek=e=>{const r=bar.getBoundingClientRect();const x=Math.min(Math.max((e.clientX-r.left)/r.width,0),1);if(hv.duration){hv.currentTime=x*hv.duration;$("barfill").style.width=(x*100)+"%"}};
+ bar.addEventListener("pointerdown",e=>{e.stopPropagation();drag=true;try{bar.setPointerCapture(e.pointerId)}catch(_){}seek(e)});
+ bar.addEventListener("pointermove",e=>{if(drag)seek(e)});
+ const end=e=>{drag=false};bar.addEventListener("pointerup",end);bar.addEventListener("pointercancel",end);
+ bar.addEventListener("click",e=>e.stopPropagation())})();
+
  $("snd").onclick=e=>{e.stopPropagation();hv.muted=false;hv.volume=1;if(hv.paused)hv.play().catch(()=>{});sync()};
  ["play","pause","volumechange","loadeddata"].forEach(ev=>hv.addEventListener(ev,sync));
  hv.addEventListener("timeupdate",()=>{if(hv.duration)$("barfill").style.width=(hv.currentTime/hv.duration*100)+"%"});
