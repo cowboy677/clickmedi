@@ -38,7 +38,7 @@
   <div class="r big"><span>월 비용</span><span id="m2"></span></div><div class="r"><span>시작할 때 1회 비용</span><span id="o1"></span></div>
   <div class="term" id="term"></div><div class="r"><span id="tl">총 예상 금액</span><b id="tot"></b></div><div class="r mu" style="font-size:.8em"><span>VAT 10% 포함 시</span><span id="tot2"></span></div>
   <button class="btn ac" id="go">이 견적으로 상담 신청</button><button class="btn" id="cp">견적서 복사하기</button><button class="btn" onclick="window.print()">인쇄 / PDF 저장</button>
-  <p class="mu" style="font-size:.78em;margin:10px 0 0">광고비·촬영비·유료 이미지는 포함되지 않습니다. 정식 견적서와 계약서는 상담 후 발행됩니다.</p></aside></div>
+  <p class="mu" style="font-size:.78em;margin:10px 0 0">패키지를 고른 뒤 편수를 같거나 더 늘리면 같은 할인율이 적용되고, 줄이거나 낱개로만 고르면 패키지 할인은 없습니다. 광고비·촬영비·유료 이미지는 포함되지 않습니다. 정식 견적서와 계약서는 상담 후 발행됩니다.</p></aside></div>
 </div></section>
 
 <section class="s"><div class="wrap"><div class="eyebrow">COMPARE</div><h2 class="t">패키지 비교</h2><table class="cmp" id="cmp"></table></div></section>
@@ -59,7 +59,7 @@ function renderItems(){let g=-1;$("items").innerHTML=HB.ITEMS.map(i=>{let h="";i
  const ctl=i.toggle?`<div class="tog ${on?"on":""}" onclick="setQ('${i.k}',${on?0:1})"></div>`:`<div class="step"><button onclick="setQ('${i.k}',${q}-${i.step||1})">−</button><input value="${q}" onchange="setQ('${i.k}',+this.value||0)"><button onclick="setQ('${i.k}',${q}+${i.step||1})">+</button></div>`;
  const u=i.mult?`${HB.man(i.unit)} × 영상 ${st.q[i.mult]||0}편 × ${q}${i.per}`:`${HB.man(i.unit)} / ${i.per}`;
  return h+`<div class="it ${on?"on":""}"><div class="top"><div class="t"><b>${i.name}</b><span>${i.desc}</span></div>${ctl}<div class="pr">${on?HB.man(line):"-"}<small>${u}</small></div></div><details><summary>포함 내용</summary><ul>${i.inc.map(x=>`<li>${x}</li>`).join("")}</ul></details></div>`}).join("")}
-function side(){const c=HB.calc(st.q,st.term);
+function side(){const c=HB.calc(st.q,st.term,st.tier);
  $("lines").innerHTML=c.lines.map(l=>`<div class="r"><span>${l.name}${l.qty?" "+l.qty:""}${l.mult?" ×영상":""}</span><span>${l.once?"1회 ":""}${HB.man(l.amount)}</span></div>`).join("")||`<div class="r"><span>항목을 골라 주세요</span></div>`;
  $("m0").textContent=HB.man(c.m0);const d=c.pkgDisc+c.termDisc;$("dl").textContent=c.tier?("패키지 할인"+(c.termRate?` + ${c.termName} 약정`:"")):(c.termRate?`${c.termName} 약정 ${c.termRate*100}%`:"할인 없음");$("m1").textContent=d?"−"+HB.man(d):"-";
  $("m2").textContent=HB.man(c.monthly);$("o1").textContent=c.once?HB.man(c.once):"없음";
