@@ -1,8 +1,23 @@
 <!doctype html><html lang="ko"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>병원 마케팅 대행 | 병원 전문</title>
 <meta name="description" content="우리 병원의 검색 순위를 무료로 진단하고, 필요한 마케팅만 골라 가격을 직접 확인하세요.">
-<link rel="stylesheet" href="assets/style.css"><script src="assets/config.js"></script></head><body>
+<link rel="stylesheet" href="assets/style.css"><script src="assets/config.js"></script>
+<style>
+.hv{position:relative;max-width:760px;margin:0 auto 30px;border-radius:18px;overflow:hidden;background:#000;aspect-ratio:16/9;box-shadow:0 24px 60px rgba(0,0,0,.5),0 0 0 1px rgba(255,255,255,.18);text-align:left}
+.hv video{width:100%;height:100%;display:block;object-fit:contain;background:#000}
+.hv .tap{position:absolute;inset:0;width:100%;height:100%;border:0;padding:0;background:transparent;cursor:pointer;z-index:2;-webkit-tap-highlight-color:transparent}
+.hv .pb{position:absolute;left:50%;top:50%;width:84px;height:84px;margin:-42px 0 0 -42px;border-radius:50%;background:rgba(108,99,255,.92);display:flex;align-items:center;justify-content:center;z-index:3;box-shadow:0 8px 30px rgba(0,0,0,.5),0 0 0 8px rgba(255,255,255,.22);opacity:0;transform:scale(.8);transition:.25s;pointer-events:none}
+.hv.paused .pb,.hv.flash .pb{opacity:1;transform:none}
+.hv.paused .tap::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
+.hv .snd{position:absolute;left:10px;top:10px;z-index:4;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:8px 14px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;display:none}
+.hv.muted .snd{display:block}
+.hv .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.2);z-index:4;pointer-events:none}
+.hv .bar i{display:block;height:100%;width:0;background:linear-gradient(90deg,#6c63ff,#e7d3a0)}
+@media(max-width:600px){.hv{border-radius:12px;margin-bottom:22px}.hv .pb{width:64px;height:64px;margin:-32px 0 0 -32px}}
+</style>
+</head><body>
 <section class="hero"><div class="wrap">
+ <div class="hv" id="hbox"><video id="hhv" playsinline autoplay muted preload="auto" poster="assets/video/poster_horizontal.jpg"><source src="assets/video/clickmedi_horizontal.mp4" type="video/mp4"></video><button type="button" class="tap" id="htap" aria-label="재생 / 일시정지"><span class="pb"><svg viewBox="0 0 24 24" width="36" height="36"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span></button><button type="button" class="snd" id="hsnd">🔊 소리 켜기</button><div class="bar"><i id="hbar"></i></div></div>
  <span class="pill">병원 전문 · 블로그 · SNS · 영상 · 랜딩페이지</span>
  <h1>병원 마케팅,<br><em>숫자로 먼저 확인</em>하고<br>필요한 것만 고르세요</h1>
  <p>우리 병원이 지역 검색에서 어디에 있는지 무료로 진단해 드립니다. 서비스마다 가격과 하는 일을 공개해서, 직접 견적을 뽑아 보실 수 있어요.</p>
@@ -98,4 +113,15 @@ const q=sessionStorage.getItem("hb_quote_text");if(q){f_quote.style.display=f_qu
 function body(){const v=id=>document.getElementById(id).value.trim();return `[상담 신청]\n병원명: ${v("f_hos")}\n진료과: ${v("f_dept")}\n위치: ${v("f_loc")}\n담당자: ${v("f_name")}\n연락처: ${v("f_tel")}\n이메일: ${v("f_mail")}\n관심 항목: ${[...sel].join(", ")||"-"}\n문의: ${v("f_msg")||"-"}${f_quote.value?"\n\n"+f_quote.value:""}`}
 document.getElementById("cp").onclick=()=>HB.copy(body(),"복사했어요. 카카오톡이나 문자로 붙여넣어 보내 주세요");
 document.getElementById("send").onclick=()=>{const c=HB.getCompany();const to=/@/.test(c.email)?c.email:"";const list=JSON.parse(localStorage.getItem("hb_inquiries")||"[]");list.push({at:new Date().toISOString(),text:body()});localStorage.setItem("hb_inquiries",JSON.stringify(list));location.href=`mailto:${to}?subject=${encodeURIComponent("[상담 신청] "+(document.getElementById("f_hos").value||"병원"))}&body=${encodeURIComponent(body())}`};
-</script></body></html>
+</script><script>
+(function(){const v=document.getElementById("hhv"),b=document.getElementById("hbox");if(!v)return;
+function sync(){b.classList.toggle("paused",v.paused);b.classList.toggle("muted",v.muted)}
+document.getElementById("htap").onclick=function(){if(v.paused)v.play().catch(function(){});else v.pause();b.classList.add("flash");setTimeout(function(){b.classList.remove("flash")},500)};
+document.getElementById("hsnd").onclick=function(e){e.stopPropagation();v.muted=false;v.volume=1;if(v.paused)v.play().catch(function(){});sync()};
+["play","pause","volumechange","loadeddata"].forEach(function(ev){v.addEventListener(ev,sync)});
+v.addEventListener("timeupdate",function(){if(v.duration)document.getElementById("hbar").style.width=(v.currentTime/v.duration*100)+"%"});
+v.muted=false;var p=v.play();function fb(){v.muted=true;v.play().catch(function(){});sync()}
+if(p&&p.catch)p.catch(fb);else fb();
+setTimeout(function(){if(v.paused){v.muted=true;v.play().catch(function(){})}sync()},900);sync();})();
+</script>
+</body></html>
