@@ -1,0 +1,416 @@
+<!doctype html>
+<html lang="ko"><head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>클릭메디 | 우리 병원, 검색에서 어디에 있을까요? (무료 진단)</title>
+<meta name="description" content="환자는 검색한 키워드에 뜨는 병원을 찾아 멀리서도 옵니다. 검색엔진 최적화 글과 SNS 바이럴에 특화된 병원 전문 마케팅 대행사 클릭메디. 우리 병원 검색 현황을 무료로 진단해 보세요.">
+<meta property="og:title" content="클릭메디 | 우리 병원, 검색에서 어디에 있을까요?">
+<meta property="og:description" content="영상으로 먼저 보고, 가격은 공개, 진단은 무료. 병원 전문 마케팅 대행사 클릭메디">
+<meta property="og:image" content="assets/video/poster_vertical.jpg">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#070a1f">
+<link rel="preconnect" href="https://cdn.jsdelivr.net">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.css">
+<style>
+:root{--navy:#080b24;--navy2:#0e1442;--indigo:#1a2270;--ink:#0b1030;--beige:#e8e3d8;--beige2:#f3efe6;--gold:#f4d77c;--gold2:#e6bf4b;--mu:#8f98c9;--line:rgba(255,255,255,.12);--ac:#6c63ff;--ac2:#9a6bff;--cyan:#8fe3ff}
+*{box-sizing:border-box;margin:0;padding:0;-webkit-tap-highlight-color:transparent}
+html{scroll-behavior:smooth}
+body{background:#04051a;color:#fff;font-family:"Pretendard",-apple-system,"Apple SD Gothic Neo","Malgun Gothic",sans-serif;-webkit-font-smoothing:antialiased;line-height:1.55;word-break:keep-all;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.col{max-width:520px;margin:0 auto;position:relative;background:var(--navy);box-shadow:0 0 120px rgba(80,70,255,.18)}
+.top{position:sticky;top:0;z-index:60;max-width:520px;margin:0 auto;display:flex;align-items:center;gap:6px;padding:12px 16px;background:rgba(8,11,36,.86);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top b{font-size:18px;letter-spacing:-.5px;font-weight:900}.top b small{font-size:11px;font-weight:600;color:var(--mu);margin-left:6px}
+.top nav{margin-left:auto;display:flex;gap:4px}.top nav a{font-size:13px;font-weight:700;padding:7px 10px;border-radius:10px;color:#cfd4ff}.top nav a:hover{background:rgba(255,255,255,.08)}
+.top nav a.cta{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff}
+section{position:relative;padding:72px 26px;overflow:hidden}
+.dark{background:var(--navy)}.dark2{background:linear-gradient(180deg,var(--navy2),#0a0f36)}
+.indigo{background:linear-gradient(180deg,#1b2370,#141a58)}
+.light{background:var(--beige);color:var(--ink)}
+.light2{background:var(--beige2);color:var(--ink)}
+.eyebrow{font-size:13px;letter-spacing:.14em;color:var(--mu);font-weight:700;text-align:center;margin-bottom:18px}
+.light .eyebrow,.light2 .eyebrow{color:#6b6a7a}
+h2.t{font-size:32px;line-height:1.28;font-weight:900;letter-spacing:-1.2px;text-align:center}
+h2.t.l{text-align:left}
+.hl{background:var(--gold);color:#14143a;padding:0 .18em;border-radius:5px;box-decoration-break:clone;-webkit-box-decoration-break:clone}
+.hl2{color:var(--gold)}
+.hlc{color:var(--cyan)}
+.sub{font-size:16px;color:#c5caf0;text-align:center;margin-top:16px}
+.light .sub,.light2 .sub{color:#4a4a5e}
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .8s ease,transform .8s ease}
+.reveal.in{opacity:1;transform:none}
+.d1{transition-delay:.12s}.d2{transition-delay:.24s}.d3{transition-delay:.36s}
+/* HERO */
+.hero{min-height:calc(100vh - 56px);min-height:calc(100dvh - 56px);display:flex;flex-direction:column;justify-content:center;text-align:center;padding:60px 26px 90px;background:radial-gradient(520px 420px at 50% 18%,rgba(92,80,255,.32),transparent 70%),linear-gradient(180deg,#070a22,#0b1038)}
+.hero .small{font-size:14px;color:var(--mu);letter-spacing:.02em}
+.hero h1{font-size:44px;line-height:1.22;font-weight:900;letter-spacing:-2px;margin:22px 0 26px}
+.hero .line{width:1px;height:64px;margin:6px auto 22px;background:linear-gradient(#fff,transparent)}
+.hero p.q{font-size:21px;font-weight:800;line-height:1.5}
+.hero .scroll{position:absolute;left:0;right:0;bottom:26px;font-size:12px;letter-spacing:.2em;color:var(--gold);animation:bob 2s infinite}
+@keyframes bob{50%{transform:translateY(6px)}}
+.heroimg{position:absolute;inset:0;background:url(assets/img/s13.jpg) center/cover;opacity:.14;mix-blend-mode:screen}
+/* CHAT */
+.chat{display:flex;flex-direction:column;gap:12px;margin-top:34px}
+.b{max-width:86%;padding:14px 18px;border-radius:20px;font-size:16px;font-weight:700;line-height:1.45}
+.b.l{align-self:flex-start;background:#2a2f5c;border-bottom-left-radius:6px}
+.b.r{align-self:flex-end;background:var(--gold);color:#1a1a3e;border-bottom-right-radius:6px}
+.big-q{margin-top:40px;text-align:center;font-size:17px;color:#c5caf0}
+.big-q b{display:block;margin-top:10px;font-size:25px;line-height:1.45;color:#fff}
+/* WORLD */
+.steps3{display:grid;gap:14px;margin-top:34px}
+.s3{display:flex;gap:16px;align-items:center;padding:20px 22px;border-radius:22px;background:#fff;box-shadow:0 10px 30px rgba(20,20,60,.08)}
+.s3 i{font-style:normal;flex:none;width:50px;height:50px;border-radius:50%;background:var(--indigo);color:#fff;display:grid;place-items:center;font-weight:900;font-size:20px}
+.s3 b{display:block;font-size:19px;letter-spacing:-.5px}.s3 span{font-size:14px;color:#555}
+.photo{margin-top:34px;border-radius:26px;overflow:hidden;position:relative}
+.photo img{display:block;width:100%;height:auto}
+.photo .cap{position:absolute;left:0;right:0;bottom:0;padding:34px 22px 20px;background:linear-gradient(transparent,rgba(5,8,30,.85));color:#fff;font-weight:800;font-size:18px;line-height:1.4}
+/* DATA */
+.bignum{text-align:center;margin:34px 0 8px;font-weight:900;font-size:88px;letter-spacing:-4px;line-height:1;font-family:"Pretendard",serif}
+.bignum small{font-size:34px;letter-spacing:0;margin-left:4px}
+.mini3{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:30px;padding-top:24px;border-top:1px solid var(--line);text-align:center}
+.mini3 div+div{border-left:1px solid var(--line)}
+.mini3 b{display:block;font-size:34px;letter-spacing:-1.5px}.mini3 span{font-size:12px;color:#aab1e6}
+.chart{margin-top:34px;padding:26px 22px 20px;border-radius:24px;background:rgba(0,0,0,.28);border:1px solid var(--line)}
+.chart h4{font-size:15px;color:#d5d9ff;margin-bottom:18px;text-align:center;font-weight:700}
+.bar{display:flex;align-items:center;gap:10px;margin:11px 0;font-size:14px;font-weight:700}
+.bar em{font-style:normal;width:70px;flex:none;color:#c5caf0}
+.bar .tr{flex:1;height:22px;border-radius:12px;background:rgba(255,255,255,.07);overflow:hidden}
+.bar .tr i{display:block;height:100%;width:0;border-radius:12px;background:linear-gradient(90deg,#6c63ff,#8fb0ff);transition:width 1.4s cubic-bezier(.2,.8,.2,1)}
+.bar .tr i.gold{background:linear-gradient(90deg,var(--gold2),var(--gold))}
+.bar b{width:48px;text-align:right;flex:none}
+.note{font-size:12px;color:#8f98c9;margin-top:14px;text-align:center;line-height:1.6}
+.light .note{color:#777}
+.callout{margin-top:26px;padding:20px 22px;border-radius:20px;background:rgba(244,215,124,.12);border:1px solid rgba(244,215,124,.4);font-size:16px;line-height:1.6;text-align:center}
+.callout b{color:var(--gold)}
+/* VIDEO */
+.vgrid{display:grid;gap:26px;margin-top:34px}
+.phone{width:min(260px,70%);margin:0 auto;border-radius:34px;padding:10px;background:#0a0d2b;border:1px solid var(--line);box-shadow:0 30px 70px rgba(0,0,0,.5),0 0 60px rgba(108,99,255,.25)}
+.phone .vb{border-radius:26px;overflow:hidden;background:#000;aspect-ratio:9/16}
+.phone video{width:100%;height:100%;display:block;object-fit:cover}
+.vlabel{text-align:center;margin-top:14px;font-weight:800;font-size:15px}.vlabel small{display:block;color:var(--mu);font-weight:500;font-size:12px;margin-top:2px}
+#hwrap{border-radius:22px;padding:10px;background:#0a0d2b;border:1px solid var(--line)}
+#hwrap .vb{position:relative;border-radius:14px;overflow:hidden;background:#000;aspect-ratio:16/9}
+#hwrap video{width:100%;height:100%;display:block;object-fit:contain}
+.hint{display:flex;gap:10px;align-items:center;justify-content:center;flex-wrap:wrap;margin-top:12px;color:#cfd4ff;font-size:13px}
+.hint .rot{display:inline-block;font-size:20px;animation:rot 2.6s ease-in-out infinite}
+@keyframes rot{0%,35%{transform:rotate(0)}60%,100%{transform:rotate(-90deg)}}
+.fsbtn{background:#fff;color:#0b1030;border:0;border-radius:10px;padding:8px 14px;font-weight:800;cursor:pointer;font-family:inherit}
+#hwrap.fs{position:fixed;left:0;top:0;right:0;bottom:0;z-index:99999;background:#000;border-radius:0;padding:0;border:0;display:flex;align-items:center;justify-content:center}
+#hwrap.fs .vb{width:100vw;height:100vh;height:100dvh;border-radius:0;aspect-ratio:auto}
+#hwrap.fs video{width:100vw;height:100vh;height:100dvh}
+#hwrap.fs .vlabel,#hwrap.fs .hint{display:none}
+#hwrap .fsx{display:none}
+#hwrap.fs .fsx{display:block;position:absolute;right:calc(14px + env(safe-area-inset-right));top:calc(10px + env(safe-area-inset-top));z-index:3;background:rgba(0,0,0,.55);color:#fff;border:1px solid rgba(255,255,255,.5);border-radius:20px;padding:6px 14px;font-size:14px;font-family:inherit}
+body.noscroll{overflow:hidden}
+/* POINTS */
+.pt{margin-top:40px}
+.pt .tag{font-size:14px;font-weight:800;color:#6b5be6;letter-spacing:.04em}
+.pt h3{font-size:30px;line-height:1.3;font-weight:900;letter-spacing:-1.2px;margin:8px 0 6px}
+.pt h3 .hl{background:#d9d3c2;color:inherit}
+.pt p.d{font-size:15px;color:#555;margin-bottom:14px}
+.list{border-top:1px solid rgba(11,16,48,.18)}
+.list div{display:flex;align-items:center;gap:14px;padding:14px 2px;border-bottom:1px solid rgba(11,16,48,.12);font-size:16px;font-weight:700}
+.list div em{font-style:normal;font-size:22px;font-weight:900;min-width:92px;color:#14143a}
+.list div span{color:#555;font-weight:600;font-size:15px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+.chip{padding:9px 16px;border-radius:30px;background:#fff;font-weight:800;font-size:14px;box-shadow:0 4px 14px rgba(20,20,60,.08)}
+/* SEO */
+.six{display:grid;gap:12px;margin-top:34px}
+.six div{display:flex;gap:16px;padding:18px 20px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid var(--line)}
+.six i{font-style:normal;flex:none;width:36px;height:36px;border-radius:12px;background:var(--gold);color:#14143a;display:grid;place-items:center;font-weight:900}
+.six b{display:block;font-size:17px;margin-bottom:2px}.six span{font-size:14px;color:#c5caf0}
+/* DIAG */
+.diag{margin-top:30px;padding:24px 20px;border-radius:26px;background:#fff;color:var(--ink);box-shadow:0 26px 60px rgba(0,0,0,.35)}
+.diag h4{font-size:13px;color:#5a52e6;font-weight:800;letter-spacing:.05em}
+.diag .nm{font-size:24px;font-weight:900;letter-spacing:-1px;margin:4px 0 14px}
+.diag .score{display:flex;align-items:flex-end;gap:10px}.diag .score b{font-size:60px;line-height:1;letter-spacing:-3px;color:#3f35d9}.diag .score span{font-size:14px;color:#777;padding-bottom:8px}
+.diag table{width:100%;border-collapse:collapse;margin-top:18px;font-size:14px}
+.diag th{font-size:12px;color:#888;text-align:left;padding:6px 4px;border-bottom:1px solid #eee}.diag td{padding:10px 4px;border-bottom:1px solid #f0f0f0;font-weight:700}
+.diag td .bl{filter:blur(5px);user-select:none}
+.diag .lock{margin-top:12px;font-size:12px;color:#777}
+/* PROCESS */
+.proc{margin-top:34px;display:grid;gap:14px}
+.proc div{padding:20px 22px;border-radius:22px;background:#fff;box-shadow:0 10px 30px rgba(20,20,60,.07);display:flex;gap:16px}
+.proc i{font-style:normal;flex:none;width:34px;height:34px;border-radius:50%;background:var(--indigo);color:#fff;display:grid;place-items:center;font-weight:900;font-size:15px;margin-top:2px}
+.proc b{display:block;font-size:18px}.proc span{font-size:14px;color:#555}
+/* PROMISE */
+.prom{margin-top:34px;display:grid;gap:12px}
+.prom div{padding:20px 22px;border-radius:20px;background:rgba(255,255,255,.07);border:1px solid var(--line);display:flex;gap:14px;align-items:flex-start}
+.prom i{font-style:normal;flex:none;color:var(--gold);font-size:22px;line-height:1.3}
+.prom b{display:block;font-size:18px;margin-bottom:2px}.prom span{font-size:14px;color:#c5caf0}
+/* PRICE */
+.pricebox{margin-top:30px;padding:28px 22px;border-radius:26px;background:rgba(0,0,0,.26);border:1px solid var(--line);text-align:center}
+.pricebox .old{color:#8f98c9;font-size:14px}
+.pricebox .big{font-size:50px;font-weight:900;letter-spacing:-2px;margin:6px 0 2px}.pricebox .big small{font-size:20px;letter-spacing:0}
+.tier{display:flex;justify-content:space-between;align-items:center;padding:14px 4px;border-top:1px solid var(--line);font-size:16px;text-align:left}
+.tier b{font-size:18px}.tier span{color:#c5caf0;font-size:13px;display:block}.tier em{font-style:normal;font-weight:900;font-size:20px}
+.btn{display:flex;align-items:center;justify-content:center;gap:8px;width:100%;padding:18px 22px;border-radius:18px;font-size:18px;font-weight:900;letter-spacing:-.5px;border:0;cursor:pointer;font-family:inherit}
+.btn.p{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff;box-shadow:0 14px 34px rgba(108,99,255,.45)}
+.btn.g{background:var(--gold);color:#14143a}
+.btn.w{background:#fff;color:#0b1030}
+.btn.o{background:transparent;border:1.5px solid rgba(255,255,255,.4);color:#fff}
+.btns{display:grid;gap:12px;margin-top:26px}
+/* FAQ */
+.faq details{border-bottom:1px solid rgba(11,16,48,.16);padding:18px 2px}
+.faq summary{font-size:17px;font-weight:800;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::after{content:"＋";color:#6b5be6;font-weight:900}.faq details[open] summary::after{content:"－"}
+.faq p{margin-top:10px;font-size:15px;color:#444}
+/* FORM */
+.form{margin-top:30px;padding:24px 20px;border-radius:26px;background:rgba(0,0,0,.3);border:1px solid var(--line)}
+.form label{display:block;font-size:13px;color:#aab1e6;margin:14px 0 6px;font-weight:700}
+.form input,.form select,.form textarea{width:100%;padding:15px 16px;border-radius:14px;border:1px solid var(--line);background:rgba(255,255,255,.07);color:#fff;font-size:16px;font-family:inherit}
+.form input::placeholder,.form textarea::placeholder{color:#7f88bb}
+.form select option{color:#000}
+.form textarea{min-height:90px;resize:vertical}
+.form .agree{display:flex;gap:10px;align-items:flex-start;margin-top:16px;font-size:13px;color:#c5caf0}
+.form .agree input{width:20px;height:20px;flex:none;margin-top:2px}
+.msg{font-size:13px;color:var(--gold);margin-top:12px;text-align:center;min-height:18px}
+/* HOME GRID */
+.hgrid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:26px}
+.hgrid a{padding:18px 16px;border-radius:18px;background:rgba(255,255,255,.07);border:1px solid var(--line);font-weight:800;font-size:15px}
+.hgrid a small{display:block;color:#aab1e6;font-weight:500;font-size:12px;margin-top:2px}
+footer{padding:44px 26px 150px;background:#04051a;color:#7f88bb;font-size:12px;line-height:1.8;text-align:center}
+footer b{color:#c5caf0;font-size:14px}
+/* STICKY */
+.fab{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));z-index:70;max-width:520px;margin:0 auto;padding:0 18px;display:flex;gap:10px;transform:translateY(120%);transition:transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
+.fab.show{transform:none}.fab a{pointer-events:auto;flex:1;text-align:center;padding:16px 10px;border-radius:30px;font-weight:900;font-size:16px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
+.fab .a{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff}.fab .b2{background:#fff;color:#0b1030}
+@media(min-width:700px){.col{margin:0 auto}body{background:radial-gradient(900px 600px at 50% 0,#14185a,#04051a)}}
+</style></head><body>
+
+<header class="top"><b>클릭메디<small>병원 전문</small></b><nav><a href="index.html">홈</a><a href="price.html">가격</a><a href="diagnose.html" class="cta">무료 진단</a></nav></header>
+
+<div class="col">
+
+<!-- 1 HERO -->
+<section class="dark hero"><div class="heroimg"></div>
+ <p class="small reveal">원장님, 요즘 이런 생각 한 번쯤 하셨죠</p>
+ <h1 class="reveal d1">실력은 좋은데<br>왜 우리 병원만<br><span class="hl">안 보일</span>까</h1>
+ <div class="line reveal d2"></div>
+ <p class="q reveal d2">혹시 실력이 아니라<br><span class="hl2">검색</span>의 문제였다면요?</p>
+ <div class="scroll">▼ 내려서 확인해 보세요</div>
+</section>
+
+<!-- 2 CHAT -->
+<section class="dark2">
+ <h2 class="t reveal"><span class="hl2">요즘</span> 이런 고민,<br>하고 계신가요?</h2>
+ <div class="chat">
+  <div class="b l reveal">블로그는 쓰는데, 효과를 모르겠어</div>
+  <div class="b r reveal d1">경쟁 병원 글이 맨 위에 있네…</div>
+  <div class="b l reveal">대행사 보고서엔 조회수만 있어</div>
+  <div class="b r reveal d1">인스타, 스레드, 당근까지 언제 다 하지</div>
+  <div class="b l reveal">우리 병원은 지금 검색에서 몇 번째지?</div>
+ </div>
+ <p class="big-q reveal">그런데 이 고민들엔 공통점이 있어요<b>전부 <span class="hl">검색에서 어디에 있지?</span><br>라는 질문이에요</b></p>
+</section>
+
+<!-- 3 WORLD -->
+<section class="light">
+ <p class="eyebrow">세상이 바뀌었습니다</p>
+ <h2 class="t reveal">환자는 <span class="hl">검색한 키워드</span>에<br>뜨는 병원을 찾아<br>멀리서도 옵니다</h2>
+ <p class="sub reveal">가까운 병원이 아니라, 검색에서 보이는 병원이 선택받는 세상이에요.</p>
+ <div class="steps3">
+  <div class="s3 reveal"><i>1</i><div><b>검색합니다</b><span>"지역 + 진료 + 궁금한 것"을 검색창에</span></div></div>
+  <div class="s3 reveal d1"><i>2</i><div><b>비교합니다</b><span>블로그 · 영상 · 지도 · 후기를 넘겨 봐요</span></div></div>
+  <div class="s3 reveal d2"><i>3</i><div><b>찾아갑니다</b><span>뜨는 병원이라면, 멀어도 갑니다</span></div></div>
+ </div>
+ <div class="photo reveal"><img src="assets/img/s01.jpg" alt="스마트폰으로 병원을 검색하는 환자" loading="lazy"><div class="cap">검색에 보이지 않으면,<br>환자는 그 병원이 있다는 사실조차 알 수 없습니다</div></div>
+</section>
+
+<!-- 4 DATA -->
+<section class="indigo">
+ <p class="eyebrow">감이 아니라 데이터로</p>
+ <h2 class="t reveal">원장님 동네와 주변<br>병원·의원 수천 곳을<br><span class="hl">직접 분석</span>했어요</h2>
+ <div class="bignum reveal"><span id="cnt">0</span><small>곳</small></div>
+ <p class="sub" style="margin-top:0">시흥 · 안산 · 인천 연수구 · 남동구 병원·의원<br>지도 순위 · 블로그 노출 · 채널 보유 현황</p>
+ <div class="mini3 reveal"><div><b>4곳</b><span>분석 지역</span></div><div><b>12개</b><span>진료과 분류</span></div><div><b>2026.11</b><span>수집 시점</span></div></div>
+ <div class="chart reveal">
+  <h4>병원이 가진 온라인 채널 (분석한 2,556곳 중)</h4>
+  <div class="bar"><em>홈페이지</em><div class="tr"><i data-w="46"></i></div><b>46%</b></div>
+  <div class="bar"><em>블로그</em><div class="tr"><i data-w="45"></i></div><b>45%</b></div>
+  <div class="bar"><em>인스타그램</em><div class="tr"><i data-w="21"></i></div><b>21%</b></div>
+  <div class="bar"><em>카카오채널</em><div class="tr"><i data-w="17"></i></div><b>17%</b></div>
+  <div class="bar"><em>유튜브</em><div class="tr"><i data-w="12"></i></div><b>12%</b></div>
+  <div class="bar"><em>스레드</em><div class="tr"><i class="gold" data-w="2"></i></div><b class="hl2">0.2%</b></div>
+  <p class="note">네이버 지도에 등록된 주소와 홈페이지 안 링크 기준 자체 수집값입니다. 링크 없이 운영하는 계정은 '없음'으로 보일 수 있고, 외부 기관의 공식 통계가 아닙니다.</p>
+ </div>
+ <div class="callout reveal">스레드는 연결한 병원이 거의 없어요.<br><b>먼저 시작한 계정이 먼저 기억됩니다.</b></div>
+</section>
+
+<!-- 5 VIDEO -->
+<section class="dark" id="video">
+ <p class="eyebrow">영상으로 먼저 보세요</p>
+ <h2 class="t reveal">1분 30초면<br><span class="hl">클릭메디가 하는 일</span>이<br>한눈에 보입니다</h2>
+ <div class="vgrid">
+  <div class="reveal"><div class="phone"><div class="vb"><video id="vv" controls playsinline preload="metadata" poster="assets/video/poster_vertical.jpg"><source src="assets/video/clickmedi_vertical_full.mp4" type="video/mp4"></video></div></div><div class="vlabel">세로 영상 · 폰으로 보기<small>1분 30초 · 가로 영상과 같은 내용</small></div></div>
+  <div class="reveal" id="hwrap"><div class="vb"><button class="fsx" type="button" id="fsx">✕ 닫기</button><video id="hv" controls playsinline preload="metadata" poster="assets/video/poster_horizontal.jpg"><source src="assets/video/clickmedi_horizontal.mp4" type="video/mp4"></video></div><div class="vlabel">가로 영상 · 크게 보기<small>1분 30초</small></div><div class="hint"><span class="rot">📱</span><span>폰을 가로로 돌리면 화면이 꽉 차게 재생됩니다</span><button type="button" class="fsbtn" id="fsb">전체화면</button></div></div>
+ </div>
+ <p class="note" style="margin-top:24px">※ 영상 속 인물과 장소는 AI로 만든 가상 이미지이며, 진단기 화면은 병원명을 가린 예시입니다.</p>
+</section>
+
+<!-- 6 WHAT WE DO -->
+<section class="light">
+ <p class="eyebrow">클릭메디가 하는 일</p>
+ <h2 class="t reveal">글만 많이 쓴다고<br><span class="hl">되는 것이 아닙니다</span></h2>
+ <p class="sub reveal">검색 봇이 우리 병원을 잘 읽어 가도록,<br>SNS에서 오르내리도록 만드는 일에 특화되어 있어요.</p>
+ <div class="pt reveal"><div class="tag">포인트 1</div><h3>검색엔진에 <span class="hl">최적화된 글</span></h3><p class="d">검색 로봇이 읽는 기준(SEO)에 맞춰, 환자가 실제로 치는 검색어로 씁니다.</p>
+  <div class="list"><div><em>검색어</em><span>지역 + 진료 + 환자 질문 조사</span></div><div><em>첫 문단</em><span>질문의 답을 먼저, 구조 있게</span></div><div><em>정보 일치</em><span>이름·주소·전화를 모든 곳에서 똑같이</span></div></div></div>
+ <div class="pt reveal"><div class="tag">포인트 2</div><h3>SNS에서 오르내리는 <span class="hl">바이럴</span></h3><p class="d">한 번 만든 이야기를 여러 채널에서 이어서 보여 드립니다.</p>
+  <div class="chips"><span class="chip">네이버 블로그</span><span class="chip">인스타그램</span><span class="chip">스레드</span><span class="chip">숏폼 영상</span><span class="chip">당근</span></div></div>
+ <div class="pt reveal"><div class="tag">포인트 3</div><h3>도착지는 <span class="hl">홈페이지·플레이스</span></h3><p class="d">모든 채널이 향하는 곳을 환자가 헤매지 않게 정비합니다.</p>
+  <div class="chips"><span class="chip">홈페이지 제작·유지보수</span><span class="chip">네이버 플레이스</span><span class="chip">예약·문의 연결</span></div></div>
+ <div class="photo reveal" style="margin-top:40px"><img src="assets/img/s11.jpg" alt="제작팀과 원장님이 함께 콘텐츠를 확인하는 모습" loading="lazy"><div class="cap">모든 글과 영상은 의료광고 점검 후<br>원장님 확인을 거쳐서 올립니다</div></div>
+</section>
+
+<!-- 7 SEO SIX -->
+<section class="dark2">
+ <p class="eyebrow">이렇게 씁니다</p>
+ <h2 class="t reveal">검색 로봇이 읽는 기준,<br><span class="hl">여섯 가지</span>로 지킵니다</h2>
+ <div class="six">
+  <div class="reveal"><i>1</i><p><b>검색어부터</b><span>지역 + 진료 + 환자 질문, 글 한 편에 검색어 하나</span></p></div>
+  <div class="reveal"><i>2</i><p><b>첫 문단에서 답하기</b><span>제목·첫 문단에 답을 먼저, 소제목·표·FAQ로 구조화</span></p></div>
+  <div class="reveal"><i>3</i><p><b>로봇이 읽는 형태</b><span>이미지 설명, 적정 분량, 제목 순서, 관련 글 연결</span></p></div>
+  <div class="reveal"><i>4</i><p><b>정보 일치</b><span>블로그·플레이스·홈페이지의 이름·주소·전화 통일</span></p></div>
+  <div class="reveal"><i>5</i><p><b>홈페이지 SEO</b><span>진료과별 페이지, 모바일 속도, 구조화된 진료 정보</span></p></div>
+  <div class="reveal"><i>6</i><p><b>발행 뒤 확인</b><span>검색어별 순위·수집 여부를 매달 보고하고 다음 글에 반영</span></p></div>
+ </div>
+ <p class="note">※ 순위와 AI 답변 노출은 보장하지 않습니다. 검색 기준은 수시로 바뀌므로 매달 점검합니다.</p>
+</section>
+
+<!-- 8 DIAG -->
+<section class="indigo">
+ <p class="eyebrow">무료 진단</p>
+ <h2 class="t reveal">우리 병원 순위,<br><span class="hl">직접</span> 확인해 보세요</h2>
+ <p class="sub reveal">병원 이름만 입력하면 지도·블로그 순위와<br>채널 현황, 비어 있는 검색어까지 나옵니다.</p>
+ <div class="diag reveal">
+  <h4>무료 진단 결과 · 예시 화면</h4><div class="nm">우리 병원 (예시)</div>
+  <div class="score"><b>60.1</b><span>노출점수 / 100</span></div>
+  <table><tr><th>#</th><th>같은 지역·진료과 병원</th><th>점수</th></tr>
+   <tr><td>1</td><td>클<span class="bl">라카라카라카</span></td><td>86.2</td></tr>
+   <tr><td>2</td><td>서<span class="bl">다차다차다차</span></td><td>85.8</td></tr>
+   <tr><td>3</td><td>서<span class="bl">나자나자나</span></td><td>85.6</td></tr></table>
+  <p class="lock">🔒 경쟁 병원 이름은 첫 글자만 보이고, 나머지는 블러 처리됩니다.</p>
+ </div>
+ <div class="btns reveal"><a class="btn p" href="diagnose.html">우리 병원 무료 진단 해보기 →</a></div>
+ <p class="note">로그인도 결제도 필요 없습니다. 시흥·안산·인천 연수구·남동구 병원이 대상입니다.</p>
+</section>
+
+<!-- 9 PROCESS -->
+<section class="light2">
+ <p class="eyebrow">진행 순서</p>
+ <h2 class="t reveal">이렇게 <span class="hl">진행</span>돼요</h2>
+ <div class="proc">
+  <div class="reveal"><i>1</i><p><b>무료 진단</b><span>지도·블로그 순위와 채널 현황을 먼저 봅니다</span></p></div>
+  <div class="reveal"><i>2</i><p><b>맞춤 제안·견적</b><span>진단에 맞춰 필요한 항목만 조합해 드립니다</span></p></div>
+  <div class="reveal"><i>3</i><p><b>점검 · 확인 후 발행</b><span>의료광고 표현 점검 → 원장님 확인 → 게시</span></p></div>
+  <div class="reveal"><i>4</i><p><b>월 보고</b><span>발행 주소, 검색어별 순위 원자료, 다음 달 주제</span></p></div>
+ </div>
+</section>
+
+<!-- 10 PROMISE -->
+<section class="dark">
+ <p class="eyebrow">클릭메디의 약속</p>
+ <h2 class="t reveal">순위를 장담하는 대신,<br><span class="hl">이것을 약속</span>합니다</h2>
+ <div class="prom">
+  <div class="reveal"><i>✔</i><p><b>병원 명의 계정</b><span>계정은 병원 이름으로, 저희는 관리 권한만 받습니다</span></p></div>
+  <div class="reveal"><i>✔</i><p><b>계약이 끝나면 그대로 인계</b><span>글과 계정을 모두 병원에 남깁니다</span></p></div>
+  <div class="reveal"><i>✔</i><p><b>약속한 편수 · 월 보고서</b><span>발행 주소와 순위 원자료를 있는 그대로 보고합니다</span></p></div>
+  <div class="reveal"><i>✔</i><p><b>의료광고 사전 점검</b><span>효과 보장·비교·후기 표현은 쓰지 않고, 부작용까지 담습니다</span></p></div>
+  <div class="reveal"><i>✔</i><p><b>환자 연동 수수료 없음</b><span>환자 수나 결제액에 따른 수수료는 받지 않습니다</span></p></div>
+ </div>
+</section>
+
+<!-- 11 PRICE -->
+<section class="indigo">
+ <p class="eyebrow">가격은 공개합니다</p>
+ <h2 class="t reveal">항목별로 <span class="hl">모두 공개</span>,<br>1개월 시범으로 시작해요</h2>
+ <div class="pricebox reveal">
+  <div class="old">월 · VAT 별도</div>
+  <div class="big">78만원<small> ~</small></div>
+  <div class="tier"><div><b>라이트</b><span>블로그를 꾸준히 시작하고 싶은 병원</span></div><em>78만</em></div>
+  <div class="tier"><div><b>스탠다드</b><span>블로그·SNS·영상을 함께 쓰는 병원</span></div><em>145만</em></div>
+  <div class="tier"><div><b>프리미엄</b><span>홈페이지부터 광고까지 한 번에</span></div><em>225만</em></div>
+ </div>
+ <div class="btns reveal"><a class="btn g" href="price.html">가격 확인하기 · 직접 견적 뽑기 →</a></div>
+ <p class="note">패키지는 항목별 단가 합계의 80%이고, 광고비·도메인·호스팅은 병원이 직접 부담합니다. 필요한 것만 골라 월 비용을 계산해 볼 수 있어요.</p>
+</section>
+
+<!-- 12 FAQ -->
+<section class="light faq">
+ <p class="eyebrow">자주 묻는 질문</p>
+ <h2 class="t reveal">궁금하신 점</h2>
+ <div style="margin-top:26px">
+  <details><summary>검색 순위를 올려 준다고 약속하나요?</summary><p>아니요. 순위는 검색엔진이 정합니다. 순위 보장을 내세우는 곳은 먼저 의심해 보세요. 대신 약속한 편수와 월 보고서로 평가받겠습니다.</p></details>
+  <details><summary>의료법 위반이 걱정돼요.</summary><p>치료 경험담, 전후 사진, 타 병원 비교, 효과 보장, 할인·이벤트 문구는 쓰지 않습니다. 모든 글은 점검표 대조 후 원장님이 확인하고 게시합니다.</p></details>
+  <details><summary>블로그 계정은 누구 명의인가요?</summary><p>병원 명의입니다. 저희는 작성·발행 권한만 받고, 계약이 끝나면 계정과 원고를 모두 병원에 남깁니다.</p></details>
+  <details><summary>광고비도 포함인가요?</summary><p>아니요. 광고비는 병원이 플랫폼에 직접 결제합니다. 대행료에는 세팅·소재 제작·운영·보고만 들어갑니다.</p></details>
+  <details><summary>처음엔 어떻게 시작하나요?</summary><p>무료 진단 → 샘플 확인 → 1개월 시범(위약금 없음) 순서를 권해 드립니다.</p></details>
+ </div>
+</section>
+
+<!-- 13 FINAL CTA -->
+<section class="dark2" id="apply">
+ <div class="photo reveal" style="margin:0 0 34px"><img src="assets/img/s13.jpg" alt="병원 의료진과 마케팅 담당자" loading="lazy"><div class="cap">우리 병원이 검색에서 어떻게 보이는지<br>먼저 확인해 보세요</div></div>
+ <h2 class="t reveal">답장에 <span class="hl">“진단”</span>이라고<br>써 주시면 됩니다</h2>
+ <p class="sub reveal">받으신 메일에 “진단”이라고만 답장해 주세요.<br>진단 결과를 <b class="hl2">무료</b>로 보내 드립니다.</p>
+ <div class="btns reveal">
+  <a class="btn p" href="diagnose.html">직접 무료 진단 해보기 →</a>
+  <a class="btn g" href="price.html">가격 확인하기 →</a>
+  <a class="btn o" href="tel:01042947742">전화로 문의 · 010-4294-7742</a>
+ </div>
+ <div class="form reveal" id="f">
+  <b style="font-size:18px">무료 진단 신청</b>
+  <label>병원명</label><input id="f_h" placeholder="예: ○○치과">
+  <label>진료과</label><select id="f_d"><option>치과</option><option>피부과</option><option>한의원</option><option>내과</option><option>정형외과</option><option>소아과</option><option>이비인후과</option><option>산부인과</option><option>기타</option></select>
+  <label>병원 위치</label><input id="f_l" placeholder="예: 시흥 배곧동">
+  <label>연락처</label><input id="f_t" inputmode="tel" placeholder="010-0000-0000">
+  <label>이메일 (선택)</label><input id="f_m" inputmode="email" placeholder="example@hospital.com">
+  <div class="agree"><input type="checkbox" id="f_a"><span>진단 결과 안내를 위해 위 정보를 보내는 것에 동의합니다. (입력하신 정보는 보내기 전까지 이 기기 밖으로 나가지 않습니다)</span></div>
+  <div class="btns"><button class="btn g" id="f_send" type="button">이메일로 신청하기</button><button class="btn o" id="f_copy" type="button">내용 복사 (카카오톡·문자용)</button></div>
+  <div class="msg" id="f_msg"></div>
+ </div>
+ <p class="sub" style="margin-top:34px;font-weight:800">홈페이지도 둘러보세요</p>
+ <div class="hgrid">
+  <a href="index.html">서비스 소개<small>하는 일·비교·FAQ</small></a><a href="homepage.html">홈페이지 제작<small>템플릿·원페이지·맞춤</small></a>
+  <a href="price.html">가격·견적<small>직접 골라 계산</small></a><a href="setup.html">세팅 안내<small>병원과 우리가 할 일</small></a>
+ </div>
+</section>
+
+<footer><b>클릭메디</b> · 대표 박준<br>010-4294-7742 · info@clickmedi.clickdew.com<br><br>본 페이지의 순위·점수는 네이버 공개 검색 결과를 자체 수집한 참고 자료이며 외부 기관의 공식 평가가 아닙니다. 순위와 환자 수는 보장하지 않으며, 의료광고 관련 최종 책임은 광고주(병원)에게 있어 모든 콘텐츠는 원장님 확인 후 게시합니다. 영상 속 인물과 장소는 AI로 만든 가상 이미지입니다.</footer>
+</div>
+
+<div class="fab" id="fab"><a class="b2" href="price.html">가격 확인하기</a><a class="a" href="diagnose.html">무료 진단 ↓</a></div>
+
+<script>
+(function(){
+ const $=id=>document.getElementById(id);
+ // reveal
+ const io=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add("in");io.unobserve(e.target)}}),{threshold:.12});
+ document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+ // bars + count
+ const barIO=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll("i[data-w]").forEach(i=>i.style.width=i.dataset.w+"%");barIO.unobserve(e.target)}}),{threshold:.3});
+ document.querySelectorAll(".chart").forEach(c=>barIO.observe(c));
+ const cio=new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){const n=$("cnt"),T=2556,t0=performance.now();(function f(t){const p=Math.min((t-t0)/1500,1);n.textContent=Math.round(T*(1-Math.pow(1-p,3))).toLocaleString();if(p<1)requestAnimationFrame(f)})(t0);cio.unobserve(e.target)}}),{threshold:.4});
+ cio.observe($("cnt"));
+ // sticky bar after hero
+ const fab=$("fab");function fabUp(){fab.classList.toggle("show",scrollY>innerHeight*.7)};addEventListener("scroll",fabUp,{passive:true});fabUp();
+ // video: one at a time, landscape fullscreen
+ const hv=$("hv"),vv=$("vv"),hw=$("hwrap");let inView=false,dismissed=false;
+ hv.addEventListener("play",()=>{inView=true;if(!vv.paused)vv.pause()});vv.addEventListener("play",()=>{if(!hv.paused)hv.pause()});
+ const phoneLand=()=>matchMedia("(orientation: landscape)").matches&&Math.min(innerWidth,innerHeight)<=520;
+ new IntersectionObserver(es=>es.forEach(e=>{if(!phoneLand())inView=e.intersectionRatio>=.4}),{threshold:[0,.2,.4,.6,.8,1]}).observe(hw);
+ function enter(){if(hw.classList.contains("fs"))return;hw.classList.add("fs");document.body.classList.add("noscroll");try{const r=hw.requestFullscreen||hw.webkitRequestFullscreen;if(r&&!document.fullscreenElement)Promise.resolve(r.call(hw)).catch(()=>{})}catch(e){}}
+ function exit(){if(!hw.classList.contains("fs"))return;hw.classList.remove("fs");document.body.classList.remove("noscroll");try{if(document.fullscreenElement&&document.exitFullscreen)document.exitFullscreen().catch(()=>{})}catch(e){}}
+ function update(){const land=phoneLand();if(!land){dismissed=false;exit();return}if(!dismissed&&(inView||!hv.paused))enter()}
+ addEventListener("orientationchange",()=>setTimeout(update,250));addEventListener("resize",()=>setTimeout(update,120));
+ if(screen.orientation&&screen.orientation.addEventListener)screen.orientation.addEventListener("change",()=>setTimeout(update,200));
+ $("fsx").onclick=()=>{dismissed=true;exit()};
+ document.addEventListener("fullscreenchange",()=>{if(!document.fullscreenElement&&hw.classList.contains("fs")&&!phoneLand())exit()});
+ $("fsb").onclick=()=>{dismissed=false;enter();try{screen.orientation&&screen.orientation.lock&&screen.orientation.lock("landscape").catch(()=>{})}catch(e){};if(hv.paused)hv.play().catch(()=>{})};
+ // form
+ function body(){const v=id=>$(id).value.trim();return `[무료 진단 신청]\n병원명: ${v("f_h")}\n진료과: ${v("f_d")}\n위치: ${v("f_l")}\n연락처: ${v("f_t")}\n이메일: ${v("f_m")}`}
+ function ok(){if(!$("f_a").checked){$("f_msg").textContent="개인정보 동의에 체크해 주세요";return false}if(!$("f_h").value.trim()||!$("f_t").value.trim()){$("f_msg").textContent="병원명과 연락처를 입력해 주세요";return false}return true}
+ $("f_send").onclick=()=>{if(!ok())return;$("f_msg").textContent="메일 앱이 열립니다. 보내기를 눌러 주세요.";location.href="mailto:info@clickmedi.clickdew.com?subject="+encodeURIComponent("[무료 진단 신청] "+$("f_h").value.trim())+"&body="+encodeURIComponent(body())};
+ $("f_copy").onclick=()=>{if(!ok())return;(navigator.clipboard?navigator.clipboard.writeText(body()):Promise.reject()).then(()=>$("f_msg").textContent="복사했어요. 카카오톡이나 문자로 붙여넣어 보내 주세요.").catch(()=>$("f_msg").textContent="복사에 실패했어요. 이메일로 신청해 주세요.")};
+})();
+</script>
+</body></html>
