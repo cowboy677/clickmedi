@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120 120" width="120" height="120"><defs><linearGradient id="n" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#22e5ff"/><stop offset=".55" stop-color="#5b6cff"/><stop offset="1" stop-color="#b45cff"/></linearGradient><filter id="gl" x="-40%" y="-40%" width="180%" height="180%"><feGaussianBlur stdDeviation="3.2" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter><linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#0a0f33"/><stop offset="1" stop-color="#1b1466"/></linearGradient></defs><rect x="1" y="1" width="118" height="118" rx="27" fill="url(#bg)" stroke="#6f7dff" stroke-opacity=".55" stroke-width="2"/>
+<path d="M86.0 81.9 A34 34 0 1 1 86.0 38.1" fill="none" stroke="url(#n)" stroke-width="12" stroke-linecap="round" filter="url(#gl)"/>
+<circle cx="86.0" cy="81.9" r="4.5" fill="#22e5ff"/>
+<circle cx="86.0" cy="38.1" r="4.5" fill="#b45cff"/>
+<g filter="url(#gl)"><polygon points="50.0,44.0 50.0,81.7 60.1,73.0 67.4,90.4 74.7,87.5 67.4,70.1 80.5,70.1" fill="#fff"/></g></svg>
