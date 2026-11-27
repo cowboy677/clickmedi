@@ -103,7 +103,7 @@ h2.t.l{text-align:left}
 #hwrap .pbtn svg{margin-left:0}
 #hwrap.paused .pbtn,#hwrap.flash .pbtn{opacity:1;transform:none}
 #hwrap.paused .tap::after{content:"";position:absolute;inset:0;background:rgba(0,0,0,.28)}
-#hwrap .snd{position:absolute;left:10px;top:10px;z-index:4;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:8px 14px;font-size:14px;font-weight:800;font-family:inherit;cursor:pointer;display:none}
+#hwrap .snd{position:absolute;left:50%;top:12px;bottom:auto;margin-left:-86px;width:172px;text-align:center;z-index:4;background:rgba(0,0,0,.72);color:#fff;border:1px solid rgba(255,255,255,.45);border-radius:20px;padding:11px 12px;font-size:16px;font-weight:900;font-family:inherit;cursor:pointer;display:none}
 #hwrap.muted .snd{display:block;animation:pulse 1.8s infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(255,255,255,.5)}50%{box-shadow:0 0 0 8px rgba(255,255,255,0)}}
 #hwrap .bar{position:absolute;left:0;right:0;bottom:0;height:4px;background:rgba(255,255,255,.2);z-index:4;pointer-events:none}
@@ -196,7 +196,7 @@ footer b{color:#c5caf0;font-size:14px}
 
 <!-- 0 VIDEO (top) -->
 <section class="dark" id="video">
- <div class="reveal in" id="hwrap"><div class="vb"><button class="fsx" type="button" id="fsx">✕ 닫기</button><video id="hv" playsinline autoplay muted preload="auto" poster="assets/video/poster_horizontal.jpg"><source src="assets/video/clickmedi_horizontal.mp4" type="video/mp4"></video><button type="button" class="tap" id="tap" aria-label="재생 / 일시정지"><span class="pbtn"><svg id="pic" viewBox="0 0 24 24" width="38" height="38"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span></button><button type="button" class="snd" id="snd">🔊 소리 켜기</button><div class="bar"><i id="barfill"></i></div></div><div class="hint"><span class="rot">📱</span><span>폰을 가로로 돌리면 화면이 꽉 차게 재생됩니다 · 화면을 누르면 멈춤/재생</span><button type="button" class="fsbtn" id="fsb">전체화면</button></div></div>
+ <div class="reveal in" id="hwrap"><div class="vb"><button class="fsx" type="button" id="fsx">✕ 닫기</button><video id="hv" playsinline autoplay muted preload="auto" poster="assets/video/poster_horizontal.jpg"><source src="assets/video/clickmedi_horizontal.mp4" type="video/mp4"></video><button type="button" class="tap" id="tap" aria-label="재생 / 일시정지"><span class="pbtn"><svg id="pic" viewBox="0 0 24 24" width="38" height="38"><path d="M8 5v14l11-7z" fill="#fff"/></svg></span></button><button type="button" class="snd" id="snd">🔊 탭하면 소리 켜짐</button><div class="bar"><i id="barfill"></i></div></div><div class="hint"><span class="rot">📱</span><span>폰을 가로로 돌리면 화면이 꽉 차게 재생됩니다 · 화면을 누르면 멈춤/재생</span><button type="button" class="fsbtn" id="fsb">전체화면</button></div></div>
  <h2 class="t vt">1분 19초면 <span class="hl">클릭메디가 하는 일</span>이<br>한눈에 보입니다</h2>
  <p class="note" style="margin-top:12px">※ 영상 속 인물과 장소는 AI로 만든 가상 이미지이며, 진단기 화면은 병원명을 가린 예시입니다.</p>
 </section>
@@ -405,15 +405,17 @@ footer b{color:#c5caf0;font-size:14px}
  // video: one at a time, landscape fullscreen
  const hv=$("hv"),hw=$("hwrap");let inView=true,dismissed=false;
  function sync(){hw.classList.toggle("paused",hv.paused);hw.classList.toggle("muted",hv.muted)}
- function toggle(){if(hv.paused){hv.play().catch(()=>{})}else{hv.pause()}hw.classList.add("flash");setTimeout(()=>hw.classList.remove("flash"),500)}
+ function toggle(){if(hv.muted){hv.muted=false;hv.volume=1;if(hv.paused)hv.play().catch(()=>{});sync();return}if(hv.paused){hv.play().catch(()=>{})}else{hv.pause()}hw.classList.add("flash");setTimeout(()=>hw.classList.remove("flash"),500)}
  $("tap").onclick=toggle;
  $("snd").onclick=e=>{e.stopPropagation();hv.muted=false;hv.volume=1;if(hv.paused)hv.play().catch(()=>{});sync()};
  ["play","pause","volumechange","loadeddata"].forEach(ev=>hv.addEventListener(ev,sync));
  hv.addEventListener("timeupdate",()=>{if(hv.duration)$("barfill").style.width=(hv.currentTime/hv.duration*100)+"%"});
  hv.addEventListener("ended",()=>sync());
  (function autoplay(){hv.muted=false;const p=hv.play();const fb=()=>{hv.muted=true;hv.play().catch(()=>{});sync()};if(p&&p.catch)p.catch(fb);else fb();setTimeout(()=>{if(hv.paused){hv.muted=true;hv.play().catch(()=>{})}sync()},900)})();
- // first touch anywhere on page (outside controls) turns sound on if it started muted
- let unm=false;addEventListener("pointerdown",e=>{if(unm||!hv.muted)return;if(e.target.closest&&e.target.closest("#hwrap .tap"))return;unm=true},{passive:true});
+ // 소리: 브라우저가 소리 자동재생을 막으면 무음으로 시작하고, 화면 어디든 처음 누르는 순간 소리를 켠다
+ const wake=e=>{if(e&&e.target&&e.target.closest&&e.target.closest("#fsx"))return;if(!hv.muted)return;hv.muted=false;hv.volume=1;if(hv.paused)hv.play().catch(()=>{});sync();["pointerdown","touchstart","keydown","click"].forEach(t=>removeEventListener(t,wake,true))};
+ ["pointerdown","touchstart","keydown","click"].forEach(t=>addEventListener(t,wake,{capture:true,passive:true}));
+ if(/[?&]from=/.test(location.search)){try{hv.currentTime=0}catch(e){}scrollTo(0,0)}
  sync();
  const phoneLand=()=>matchMedia("(orientation: landscape)").matches&&Math.min(innerWidth,innerHeight)<=520;
  new IntersectionObserver(es=>es.forEach(e=>{if(!phoneLand())inView=e.intersectionRatio>=.4}),{threshold:[0,.2,.4,.6,.8,1]}).observe(hw);
