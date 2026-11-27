@@ -229,3 +229,6 @@ body.pub .ph{overflow:visible;z-index:6}
 body.pub .ph .sr{position:relative;z-index:30}
 body.pub .ph .dd{z-index:40;max-height:340px;overflow:auto}
 body.pub #out{min-height:300px}
+
+/* 로고 이미지 */
+.logo{display:flex;align-items:center;gap:8px}.logo img{display:block}body.pub .logo{align-items:center}

@@ -1,9 +1,9 @@
 /* 공용 설정: 가격·서비스·회사 정보. 여기 숫자만 고치면 모든 화면이 바뀝니다. (금액 단위: 원, VAT 별도) */
 window.HB=(function(){
-const DEFAULT_COMPANY={name:"클릭메디",ceo:"박준",bizno:"326-25-01995",addr:"경기도 시흥시 소망공원로 232, 1725호(정왕동)",biztype:"서비스",bizitem:"광고대행·마케팅",tel:"010-4294-7742",email:"info@clickmedi.clickdew.com",kakao:"카카오톡 채널 클릭메디 (pf.kakao.com/_xdRdvX)",bank:"토스뱅크 1000-9002-5822 (예금주 PARK JUN)",manager:"대표 박준",site:"https://clickmedi.clickdew.com"};
+const DEFAULT_COMPANY={name:"클릭메디",ceo:"박준",bizno:"",addr:"",biztype:"서비스",bizitem:"광고대행·마케팅",tel:"010-4294-7742",email:"info@clickmedi.clickdew.com",kakao:"",bank:"",manager:"대표 박준",site:"https://clickmedi.clickdew.com"};
 const getCompany=()=>Object.assign({},DEFAULT_COMPANY,JSON.parse(localStorage.getItem("hb_company")||"{}"));
 const setCompany=c=>localStorage.setItem("hb_company",JSON.stringify(c));
-const DRAFT=true; // 가격 확정 전 true. false면 "초안" 표시가 사라집니다.
+const DRAFT=false; // 가격 확정 전 true. false면 "초안" 표시가 사라집니다.
 const CATS=["콘텐츠 (월)","운영 (월)","처음 한 번만"];
 const ITEMS=[
  {k:"blog",cat:0,name:"네이버 블로그 글",unit:36000,per:"편",max:30,step:4,desc:"검색어 조사부터 발행까지 한 편씩 새로 씁니다.",inc:["검색어 조사·주제 기획","원고 작성 (환자 질문 1개에 답하는 글)","이미지·썸네일 배치","의료광고 점검표 대조 → 원장님 확인 후 발행","발행 URL 보고"]},
@@ -173,12 +173,13 @@ function today(d=new Date()){return d.getFullYear()+"-"+String(d.getMonth()+1).p
 function chrome(mode,active){
  const pub=[["index.html","서비스",[["index.html#why","왜 지금인가"],["index.html#svc","하는 일"],["index.html#about","회사 소개"]]],["homepage.html","홈페이지 제작",[["homepage.html#make","제작"],["homepage.html#care","유지보수"],["homepage.html#faq","FAQ"]]],["intro.html","랜딩페이지"],["price.html","가격·견적"],["setup.html","세팅 안내"],["diagnose.html","무료 진단"],["index.html#contact","상담 신청"]];
  const base=location.pathname.includes("/internal/")?"../":"";
+ if(!document.querySelector('link[rel="icon"]'))document.head.insertAdjacentHTML("beforeend",`<link rel="icon" type="image/png" sizes="32x32" href="${base}assets/img/favicon-32.png"><link rel="icon" type="image/png" sizes="48x48" href="${base}assets/img/favicon-48.png"><link rel="apple-touch-icon" href="${base}assets/img/apple-touch-icon.png">`);
  let nav="";
  if(mode==="pub"){document.body.classList.add("pub");nav=pub.map(([h,l,sub])=>sub?`<div class="dd1"><a href="${base+h}" class="${active===h?"on":""}">${l}</a><div class="sub">${sub.map(([x,y])=>`<a href="${base+x}">${y}</a>`).join("")}</div></div>`:`<a href="${base+h}" class="${active===h?"on":""}">${l}</a>`).join("")+`<a class="btn dark sm" href="${base}diagnose.html">무료 진단</a>`}
  if(mode==="int")nav=`<a href="admin.html" class="${active==="admin"?"on":""}">관리자</a><a href="field.html" class="${active==="field"?"on":""}">현장 (견적·계약)</a><a href="../index.html">고객용 화면 ↗</a>`;
- document.body.insertAdjacentHTML("afterbegin",`<header class="hd"><div class="wrap"><a class="logo" href="${mode==="int"?"admin.html":base+"index.html"}">${esc(getCompany().name==="[회사명]"?"병원 마케팅 대행":getCompany().name)}<small>${mode==="int"?"내부용":"병원 전문"}</small></a><nav class="nav">${nav}</nav>${mode==="pub"?`<button class="hbg" aria-label="메뉴"><i></i></button>`:""}</div></header>`);
+ document.body.insertAdjacentHTML("afterbegin",`<header class="hd"><div class="wrap"><a class="logo" href="${mode==="int"?"admin.html":base+"index.html"}"><img src="${base}assets/img/logo-lockup-${mode==="int"?"light":"dark"}.svg" alt="${esc(getCompany().name==="[회사명]"?"병원 마케팅 대행":getCompany().name)}" height="34" style="display:block;height:34px;width:auto"><small>${mode==="int"?"내부용":"병원 전문"}</small></a><nav class="nav">${nav}</nav>${mode==="pub"?`<button class="hbg" aria-label="메뉴"><i></i></button>`:""}</div></header>`);
  if(mode==="pub"){const sc=document.createElement("script");sc.src=base+"assets/motion.js";document.body.appendChild(sc)}
- if(mode==="pub")document.body.insertAdjacentHTML("beforeend",`<footer class="ft"><div class="wrap"><div style="margin-bottom:10px"><a href="${base}index.html">서비스</a><a href="${base}homepage.html">홈페이지 제작</a><a href="${base}intro.html">랜딩페이지</a><a href="${base}price.html">가격·견적</a><a href="${base}setup.html">세팅 안내</a><a href="${base}diagnose.html">무료 진단</a><a href="${base}internal/admin.html" style="opacity:.5">내부용</a></div>${(()=>{const c=getCompany();return [c.name,c.ceo?"대표 "+c.ceo:"",c.tel,c.email].filter(x=>x&&!/^\[|\[.*\]/.test(x)).map(esc).join(" · ")})()}<br>본 사이트의 순위·점수는 네이버 공개 검색 결과를 자체 수집한 참고 자료이며 외부 기관의 공식 평가가 아닙니다. 의료광고 관련 최종 책임은 광고주(병원)에게 있어, 모든 콘텐츠는 원장님 확인 후 게시합니다.</div></footer>`);
+ if(mode==="pub")document.body.insertAdjacentHTML("beforeend",`<footer class="ft"><div class="wrap"><img src="${base}assets/img/logo-lockup-dark.svg" alt="클릭메디" height="30" style="display:block;height:30px;width:auto;margin-bottom:12px"><div style="margin-bottom:10px"><a href="${base}index.html">서비스</a><a href="${base}homepage.html">홈페이지 제작</a><a href="${base}intro.html">랜딩페이지</a><a href="${base}price.html">가격·견적</a><a href="${base}setup.html">세팅 안내</a><a href="${base}diagnose.html">무료 진단</a></div>${(()=>{const c=getCompany();return [c.name,c.ceo?"대표 "+c.ceo:"",c.tel,c.email].filter(x=>x&&!/^\[|\[.*\]/.test(x)).map(esc).join(" · ")})()}<br>본 사이트의 순위·점수는 네이버 공개 검색 결과를 자체 수집한 참고 자료이며 외부 기관의 공식 평가가 아닙니다. 의료광고 관련 최종 책임은 광고주(병원)에게 있어, 모든 콘텐츠는 원장님 확인 후 게시합니다.</div></footer>`);
 }
 return {INTRO,ROLES,SEO,HOOKS,hookText,SETUP,getCompany,setCompany,DEFAULT_COMPANY,DRAFT,CATS,ITEMS,TIERS,TERMS,byK,won,man,lineAmt,tierMatch,tierToQ,calc,toast,copy,esc,bizValid,fmtBiz,today,chrome};
 })();
