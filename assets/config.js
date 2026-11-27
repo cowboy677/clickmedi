@@ -144,20 +144,24 @@ const lineAmt=(i,q)=>{const n=q[i.k]||0;if(!n)return 0;return i.mult?i.unit*n*(q
 function tierMatch(q){return TIERS.find(t=>ITEMS.every(i=>(q[i.k]||0)===(t.sel[i.k]??t.once[i.k]??0)))}
 function tierToQ(t){const q={};ITEMS.forEach(i=>q[i.k]=t.sel[i.k]??t.once[i.k]??0);return q}
 /* 견적 계산: q={항목:수량}, term=개월수 */
-function calc(q,term){
+function calc(q,term,baseId){
  const T=TERMS.find(t=>t[0]===term)||TERMS[0];
- const t=tierMatch(q);
+ const ex=tierMatch(q);
+ const tm0=t=>ITEMS.reduce((a,i)=>i.once?a:a+lineAmt(i,t.sel),0);
+ let t=ex,rate=0;
+ /* 고른 패키지(baseId) 기준으로 항목을 같거나 더 늘리면 같은 할인율 적용, 하나라도 줄이면 할인 없음 */
+ if(!t&&baseId){const bt=TIERS.find(x=>x.id===baseId);if(bt&&Object.keys(bt.sel).every(k=>(q[k]||0)>=bt.sel[k])){t=bt;rate=1-bt.price/tm0(bt)}}
  let m0=0,once0=0;const lines=[];
  ITEMS.forEach(i=>{const a=lineAmt(i,q);if(!a)return;lines.push({k:i.k,name:i.name,qty:i.toggle?"":(q[i.k]+i.per),mult:!!i.mult,amount:a,once:!!i.once});i.once?once0+=a:m0+=a});
- const free=t?(t.onceFree||[]).reduce((a,k)=>a+byK(k).unit,0):0;
- const baseM=t?t.price:m0;
- const pkgDisc=t?m0-t.price:0;
+ const free=t?(t.onceFree||[]).reduce((a,k)=>a+((q[k]||0)>0?byK(k).unit:0),0):0;
+ const baseM=ex?ex.price:(t?Math.round(m0*(1-rate)/1000)*1000:m0);
+ const pkgDisc=t?m0-baseM:0;
  const termDisc=Math.round(baseM*T[2]/1000)*1000;
  const monthly=baseM-termDisc;
  const once=once0-free;
  const supply=monthly*T[0]+once;
  const vat=Math.round(supply*0.1);
- return {lines,m0,once0,tier:t,pkgDisc,termDisc,termRate:T[2],termName:T[1],months:T[0],monthly,once,free,supply,vat,total:supply+vat};
+ return {lines,m0,once0,tier:t,exact:!!ex,pkgRate:ex?(1-ex.price/tm0(ex)):rate,pkgDisc,termDisc,termRate:T[2],termName:T[1],months:T[0],monthly,once,free,supply,vat,total:supply+vat};
 }
 function toast(msg){let t=document.querySelector(".toast");if(!t){t=document.createElement("div");t.className="toast";document.body.appendChild(t)}t.textContent=msg;t.classList.add("show");setTimeout(()=>t.classList.remove("show"),1600)}
 function copy(txt,msg){navigator.clipboard.writeText(txt).then(()=>toast(msg||"복사했어요"))}
