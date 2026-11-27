@@ -182,7 +182,7 @@ footer b{color:#c5caf0;font-size:14px}
 /* STICKY */
 .fab{position:fixed;left:0;right:0;bottom:calc(14px + env(safe-area-inset-bottom));z-index:70;max-width:520px;margin:0 auto;padding:0 18px;display:flex;gap:10px;transform:translateY(120%);transition:transform .45s cubic-bezier(.2,.8,.2,1);pointer-events:none}
 .fab.show{transform:none}.fab a{pointer-events:auto;flex:1;text-align:center;padding:16px 10px;border-radius:30px;font-weight:900;font-size:16px;box-shadow:0 14px 34px rgba(0,0,0,.45)}
-.fab .a{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff}.fab .b2{background:#fff;color:#0b1030}.fab .kk{background:#FEE500;color:#191919;flex:1.15}.fab a{padding:15px 6px;font-size:15px}.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:rgba(20,20,40,.96);color:#fff;border:1px solid rgba(255,255,255,.25);padding:12px 20px;border-radius:14px;font-size:14px;font-weight:700;z-index:100000;opacity:0;pointer-events:none;transition:.3s;max-width:88vw;text-align:center}.toast.show{opacity:1;transform:translateX(-50%)}
+.fab .a{background:linear-gradient(90deg,var(--ac),var(--ac2));color:#fff}.fab .b2{background:#fff;color:#0b1030}.fab .kk{background:#FEE500;color:#191919;flex:1.15}.fab a{padding:15px 6px;font-size:15px}.resbox{margin-top:16px;padding:16px;border-radius:16px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.25);text-align:left;font-size:14px}.resbox b{display:block;margin-bottom:8px;color:var(--gold)}.resbox textarea{width:100%;box-sizing:border-box;background:#0b0e2c;color:#fff;border:1px solid rgba(255,255,255,.3);border-radius:10px;padding:10px;font-family:inherit;font-size:14px;line-height:1.6;resize:none}.resbox .rb{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0}.resbox .rb button,.resbox .rb a{flex:1 1 40%;text-align:center;padding:12px 8px;border-radius:12px;border:0;font-weight:800;font-size:14px;font-family:inherit;cursor:pointer;background:#fff;color:#0b1030;text-decoration:none}.resbox .rb #r_gm{background:#f4d77c}.resbox .rb .rk{background:#FEE500;color:#191919}.resbox small{display:block;color:#aab2e6;line-height:1.5;font-size:12px}.toast{position:fixed;left:50%;bottom:96px;transform:translateX(-50%) translateY(20px);background:rgba(20,20,40,.96);color:#fff;border:1px solid rgba(255,255,255,.25);padding:12px 20px;border-radius:14px;font-size:14px;font-weight:700;z-index:100000;opacity:0;pointer-events:none;transition:.3s;max-width:88vw;text-align:center}.toast.show{opacity:1;transform:translateX(-50%)}
 @media(min-width:700px){.col{margin:0 auto}body{background:radial-gradient(900px 600px at 50% 0,#14185a,#04051a)}}
 </style></head><body>
 
@@ -373,8 +373,9 @@ footer b{color:#c5caf0;font-size:14px}
   <label>연락처</label><input id="f_t" inputmode="tel" placeholder="010-0000-0000">
   <label>이메일 (선택)</label><input id="f_m" inputmode="email" placeholder="example@hospital.com">
   <div class="agree"><input type="checkbox" id="f_a"><span>진단 결과 안내를 위해 위 정보를 보내는 것에 동의합니다. (입력하신 정보는 보내기 전까지 이 기기 밖으로 나가지 않습니다)</span></div>
-  <div class="btns"><button class="btn g" id="f_send" type="button">이메일로 신청하기</button><button class="btn o" id="f_copy" type="button">내용 복사 후 카카오톡 열기</button><a class="btn k" href="https://pf.kakao.com/_xdRdvX/chat" target="_blank" rel="noopener">💬 카카오톡 채팅방 열기</a></div>
+  <div class="btns"><button class="btn g" id="f_send" type="button">이메일로 신청하기</button><button class="btn o" id="f_copy" type="button">내용 복사 후 카카오톡 열기</button></div>
   <div class="msg" id="f_msg"></div>
+  <div class="resbox" id="f_res" style="display:none"><b>신청 내용이 준비됐어요</b><textarea id="f_ta" readonly rows="6"></textarea><div class="rb"><button type="button" id="r_gm">Gmail에서 보내기</button><button type="button" id="r_cp">내용 복사</button><button type="button" id="r_ml">메일 앱으로 열기</button><a href="https://pf.kakao.com/_xdRdvX/chat" target="_blank" rel="noopener" class="rk">카카오톡 채팅방</a></div><small>메일은 info@clickmedi.clickdew.com 으로 갑니다. 아무것도 안 열리면 위 내용을 길게 눌러 복사한 뒤 카카오톡이나 메일로 보내 주세요.</small></div>
  </div>
  <p class="sub" style="margin-top:34px;font-weight:800">홈페이지도 둘러보세요</p>
  <div class="hgrid">
@@ -421,8 +422,16 @@ footer b{color:#c5caf0;font-size:14px}
  function body(){const v=id=>$(id).value.trim();return `[무료 진단 신청]\n병원명: ${v("f_h")}\n진료과: ${v("f_d")}\n위치: ${v("f_l")}\n연락처: ${v("f_t")}\n이메일: ${v("f_m")}`}
  function ok(){if(!$("f_h").value.trim()){toast("병원명을 입력해 주세요");$("f_h").focus();return false}if(!$("f_t").value.trim()){toast("연락처를 입력해 주세요");$("f_t").focus();return false}if(!$("f_a").checked){toast("개인정보 동의에 체크해 주세요");$("f_a").scrollIntoView({block:"center",behavior:"smooth"});return false}return true}
  function copyText(t){if(navigator.clipboard&&window.isSecureContext)return navigator.clipboard.writeText(t);return new Promise((res,rej)=>{const ta=document.createElement("textarea");ta.value=t;ta.style.position="fixed";ta.style.opacity="0";document.body.appendChild(ta);ta.select();try{document.execCommand("copy")?res():rej()}catch(e){rej()}ta.remove()})}
- $("f_send").onclick=()=>{if(!ok())return;const url="mailto:info@clickmedi.clickdew.com?subject="+encodeURIComponent("[무료 진단 신청] "+$("f_h").value.trim())+"&body="+encodeURIComponent(body());const a=document.createElement("a");a.href=url;document.body.appendChild(a);a.click();a.remove();copyText(body()).catch(()=>{});toast("메일 앱이 열립니다. 안 열리면 내용이 복사됐으니 info@clickmedi.clickdew.com 으로 붙여넣어 보내 주세요.")};
- $("f_copy").onclick=()=>{if(!ok())return;const w=window.open("https://pf.kakao.com/_xdRdvX/chat","_blank");copyText(body()).then(()=>toast("내용을 복사했어요. 열린 카카오톡 채팅창에 붙여넣어 보내 주세요.")).catch(()=>toast("복사에 실패했어요. 카카오톡 채팅창에서 직접 입력해 주세요."));if(!w)location.href="https://pf.kakao.com/_xdRdvX/chat"};
+ function copySync(t){let done=false;try{const ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.cssText="position:fixed;left:0;top:0;opacity:0;font-size:16px";document.body.appendChild(ta);ta.focus();ta.select();ta.setSelectionRange(0,t.length);done=document.execCommand("copy");ta.remove()}catch(e){}try{if(navigator.clipboard&&window.isSecureContext)navigator.clipboard.writeText(t).catch(()=>{})}catch(e){}return done}
+ const MAIL="info@clickmedi.clickdew.com",KAKAO="https://pf.kakao.com/_xdRdvX/chat";
+ function subj(){return "[무료 진단 신청] "+$("f_h").value.trim()}
+ function gmailUrl(){return "https://mail.google.com/mail/?view=cm&fs=1&to="+MAIL+"&su="+encodeURIComponent(subj())+"&body="+encodeURIComponent(body())}
+ function showRes(){const t=body();$("f_ta").value=t;$("f_res").style.display="block";$("f_res").scrollIntoView({block:"center",behavior:"smooth"})}
+ $("f_send").onclick=()=>{if(!ok())return;const c=copySync(body());showRes();const w=window.open(gmailUrl(),"_blank");toast(w?"Gmail 작성 창을 열었어요. 내용이 이미 채워져 있으니 '보내기'만 누르세요.":(c?"내용을 복사했어요. 아래 버튼으로 Gmail을 열어 주세요.":"아래 상자의 내용을 복사해 보내 주세요."))};
+ $("f_copy").onclick=()=>{if(!ok())return;const c=copySync(body());showRes();window.open(KAKAO,"_blank");toast(c?"내용을 복사했어요. 카카오톡 채팅창에 붙여넣어 보내 주세요.":"아래 상자의 내용을 직접 복사해 주세요.")};
+ $("r_gm").onclick=()=>{window.open(gmailUrl(),"_blank")};
+ $("r_cp").onclick=()=>{const c=copySync($("f_ta").value);if(!c){$("f_ta").focus();$("f_ta").select()}toast(c?"복사했어요":"상자를 길게 눌러 복사해 주세요")};
+ $("r_ml").onclick=()=>{location.href="mailto:"+MAIL+"?subject="+encodeURIComponent(subj())+"&body="+encodeURIComponent(body())};
 })();
 </script>
 </body></html>
